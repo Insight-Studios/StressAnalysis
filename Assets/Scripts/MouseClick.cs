@@ -20,10 +20,10 @@ public class MouseClick : MonoBehaviour {
             else { GetComponentInParent<Memory>().MouseInput(thisNum); }
         }
 
-        else if (GetComponentInParent<Math>())
+        else if (GetComponentInParent<MathGame>())
         {
             StartCoroutine(Blink());
-            GetComponentInParent<Math>().CheckAnswer(thisNum);
+            GetComponentInParent<MathGame>().CheckAnswer(thisNum);
         }
 
         else if (GetComponentInParent<NumberClick>())

@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
-public class Math: MonoBehaviour {
+public class MathGame: MonoBehaviour {
 
     public float time;
     public float startTimeDelay;
