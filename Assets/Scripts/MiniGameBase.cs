@@ -22,6 +22,10 @@ public abstract class MiniGameBase : MonoBehaviour
             if(currentScore >= requiredScore) {
                 OnComplete();
                 enabled = false;
+            } else if (currentScore == -1) {
+                gameOver = true;
+                OnGameOver();
+                enabled = false;
             }
         }
     }
@@ -54,7 +58,7 @@ public abstract class MiniGameBase : MonoBehaviour
     
     public abstract void MiniGameStart();
 
-    protected abstract void MiniGameUpdate();
+    protected virtual void MiniGameUpdate() {}
 
     public abstract void ReceiveInput(int number);
 

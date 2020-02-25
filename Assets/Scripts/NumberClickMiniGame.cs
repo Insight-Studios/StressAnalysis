@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NumberClick : MiniGameBase
+public class NumberClickMiniGame : MiniGameBase
 {
     public int thisNumber = -1; 
 
@@ -20,22 +20,18 @@ public class NumberClick : MiniGameBase
     public override void ReceiveInput(int number)
     {
         if(number == thisNumber && enabled) {
-            Score += 1;
             thisNumber = Random.Range(1, 10);
             DisplayNum.text = thisNumber.ToString();
+            Score ++;
         }
         else if(number != thisNumber) {
-            Score = 0;
+            Score = -1;
         }
-    }
-
-    protected override void MiniGameUpdate()
-    {
-        
     }
 
     protected override void OnComplete()
     {
+        DisplayNum.text = "#";
         Debug.Log("Number Click completed");
     }
 

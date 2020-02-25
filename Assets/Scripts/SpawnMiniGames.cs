@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnMiniGames : MonoBehaviour {
 
-    public MiniGameBase[] miniGames;
+    public GameObject[] miniGames;
 
 	void Start ()
     {

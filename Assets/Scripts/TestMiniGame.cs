@@ -11,8 +11,7 @@ public class TestMiniGame : MiniGameBase
 
     protected override void MiniGameUpdate()
     {
-        return;
-        Debug.Log("Update TestMiniGame");
+        Debug.Log("Updated TestMiniGame");
     }
 
     protected override void OnComplete()
