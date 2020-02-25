@@ -30,7 +30,6 @@ public abstract class MiniGameBase : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         remainingTime = lifeTime;
@@ -39,7 +38,6 @@ public abstract class MiniGameBase : MonoBehaviour
         MiniGameStart();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!gameOver) {

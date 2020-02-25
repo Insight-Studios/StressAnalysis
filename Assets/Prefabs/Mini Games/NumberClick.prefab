@@ -314,7 +314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 30
-  requiredScore: 1
+  requiredScore: 10
   timerText: {fileID: 102507466783435498}
   scoreText: {fileID: 102136102623177162}
   thisNumber: -1
@@ -493,6 +493,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6676511113997924218, guid: c4a54eabe8244524cae109afd1457b4e,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4a54eabe8244524cae109afd1457b4e, type: 3}

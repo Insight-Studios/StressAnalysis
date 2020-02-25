@@ -349,7 +349,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 554747732909394276}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.47100005, y: -0.59300005, z: 0}
+  m_LocalPosition: {x: -0.47100005, y: -0.59300005, z: -0.1}
   m_LocalScale: {x: 2, y: 0.075, z: 1}
   m_Children: []
   m_Father: {fileID: 1842302675265128}
@@ -695,7 +695,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 3, z: 1.3}
+  m_Size: {x: 3, y: 3, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8273000474581873157
 MonoBehaviour:
@@ -740,9 +740,9 @@ GameObject:
   - component: {fileID: 5441500493714246851}
   - component: {fileID: 861446676560392986}
   - component: {fileID: 6912487433472126790}
-  - component: {fileID: 8569203526800011318}
   - component: {fileID: 8841376534372627361}
   - component: {fileID: 7558719124205921473}
+  - component: {fileID: 7167781706273776543}
   m_Layer: 0
   m_Name: Submit
   m_TagString: Untagged
@@ -825,19 +825,6 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4278190080
---- !u!65 &8569203526800011318
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2272350252908114889}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 7.8999996, y: 2.7929685, z: 0}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8841376534372627361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -870,6 +857,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   number: -2
+--- !u!65 &7167781706273776543
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2272350252908114889}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 7.8999996, y: 2.7929685, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2321559405258858479
 GameObject:
   m_ObjectHideFlags: 0
@@ -1308,6 +1308,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6676511113997924218, guid: c4a54eabe8244524cae109afd1457b4e,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4a54eabe8244524cae109afd1457b4e, type: 3}

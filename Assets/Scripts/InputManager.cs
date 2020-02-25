@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    // Start is called before the first frame update
     private OnClickEvent[] onClicks;
 
     void Start()
@@ -12,7 +11,6 @@ public class InputManager : MonoBehaviour
         onClicks = FindObjectsOfType<OnClickEvent>();
     }
 
-    // Update is called once per frame
     void Update () {
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit Hit;
