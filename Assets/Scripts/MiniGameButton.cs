@@ -16,6 +16,7 @@ public class MiniGameButton : MonoBehaviour, IOnClick
 
     public void OnClick()
     {
-        owner.ReceiveInput(number);
+        if (owner.enabled)
+            owner.ReceiveInput(number);
     }
 }

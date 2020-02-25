@@ -21,6 +21,7 @@ public abstract class MiniGameBase : MonoBehaviour
             scoreText.text = "Score: " + currentScore;
             if(currentScore >= requiredScore) {
                 OnComplete();
+                enabled = false;
             }
         }
     }
@@ -31,6 +32,7 @@ public abstract class MiniGameBase : MonoBehaviour
         remainingTime = lifeTime;
         currentScore = 0;
         gameOver = false;
+        MiniGameStart();
     }
 
     // Update is called once per frame
@@ -43,17 +45,18 @@ public abstract class MiniGameBase : MonoBehaviour
                 timerText.text = 0.ToString();
                 OnGameOver();
                 enabled = false;
-                return;
             } else {
                 timerText.text = Mathf.CeilToInt(remainingTime).ToString();
-                MinigameUpdate();
+                MiniGameUpdate();
             }
         }
     }
+    
+    public abstract void MiniGameStart();
+
+    protected abstract void MiniGameUpdate();
 
     public abstract void ReceiveInput(int number);
-
-    protected abstract void MinigameUpdate();
 
     protected abstract void OnGameOver();
 

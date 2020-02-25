@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class TestMiniGame : MiniGameBase
 {
-    protected override void MinigameUpdate()
+    public override void MiniGameStart()
     {
-        // Debug.Log("Update Test");
+        Debug.Log("Initialized TestMiniGame");
+    }
+
+    protected override void MiniGameUpdate()
+    {
+        return;
+        Debug.Log("Update TestMiniGame");
     }
 
     protected override void OnComplete()
@@ -17,5 +23,10 @@ public class TestMiniGame : MiniGameBase
     protected override void OnGameOver()
     {
         Debug.Log("MiniGame Test failed");
+    }
+
+    public override void ReceiveInput(int number)
+    {
+        Debug.Log("Received #:" +  number);
     }
 }

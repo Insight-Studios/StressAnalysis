@@ -28,7 +28,6 @@ public class InputManager : MonoBehaviour
                 }
             }
         }
-        Debug.Log(Hit.collider);
     }
 
     
