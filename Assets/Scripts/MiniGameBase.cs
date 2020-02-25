@@ -4,7 +4,7 @@ public abstract class MiniGameBase : MonoBehaviour
 {
 
     public float lifeTime = 30;
-    public int requiredScore = 1;
+    public int requiredScore = 5;
     public TextMesh timerText;
     public TextMesh scoreText;
 
