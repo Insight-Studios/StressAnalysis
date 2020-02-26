@@ -53,7 +53,7 @@ public class MathMiniGame : MiniGameBase
 
     protected override void OnGameOver()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Math failed");
     }
 
     void CreateEquation() {
@@ -75,6 +75,13 @@ public class MathMiniGame : MiniGameBase
                 break;
         }
         numbers[(int)Numbers.SOLUTION] = OperationUtils.Apply(currentOperation, numbers[(int)Numbers.UPPER], numbers[(int)Numbers.LOWER]);
+
+        if(numbers[missing] != 0 && numbers[(int)Numbers.SOLUTION] == 0 && (currentOperation == Operation.MULTIPLY || currentOperation == Operation.DIVIDE)) {
+            if(missing == 2)
+                missing--;
+            else
+                missing++;
+        }
     }
 
     void DisplayEquation() {

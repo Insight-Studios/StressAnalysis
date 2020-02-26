@@ -339,9 +339,9 @@ GameObject:
   - component: {fileID: 7946083738426588523}
   - component: {fileID: 5799302985712842985}
   - component: {fileID: 7807777342257476271}
-  - component: {fileID: 7001919744100302765}
-  - component: {fileID: 7543964053847405680}
-  - component: {fileID: 7361020629573610947}
+  - component: {fileID: 7821306648161161354}
+  - component: {fileID: 1361564618698306117}
+  - component: {fileID: 4258676521890461655}
   m_Layer: 0
   m_Name: Reset
   m_TagString: Untagged
@@ -424,7 +424,7 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
---- !u!65 &7001919744100302765
+--- !u!65 &7821306648161161354
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -435,9 +435,9 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 7.0319777, y: 2.0435696, z: 0}
-  m_Center: {x: -3.2875867, y: 1.1995668, z: 0}
---- !u!114 &7543964053847405680
+  m_Size: {x: 6.5, y: 2.234375, z: 0}
+  m_Center: {x: -3.25, y: 1.1171875, z: 0}
+--- !u!114 &1361564618698306117
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -455,7 +455,7 @@ MonoBehaviour:
   OnHover:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &7361020629573610947
+--- !u!114 &4258676521890461655
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
