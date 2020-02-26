@@ -4,48 +4,71 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject[] miniGames;
-    bool[] spotFilled;
+    public static GameManager instance;
+
+    public int numberOfSpots = 3;
+
+    public GameObject[] miniGamePrefabs;
+
+    MiniGameBase[] miniGames;
 
     void Start()
     {
-        spotFilled = new bool[3];
+        if(instance==null)
+            instance = this;
+        else
+            throw new System.Exception("Singleton instantiated twice.");
 
-        SpawnGame(0);
-        SpawnGame(1);
-        SpawnGame(2);
+        miniGames = new MiniGameBase[numberOfSpots];
+
+        for(int i = 0; i < numberOfSpots; i++) {
+            SpawnGame(i);
+        }
+        InputManager.instance.ReloadOnClicks();
     }
 
     void SpawnGame(int location) //0 left, 1 middle, 2 right
     {
+        GameObject newMiniGame;
+
         switch (location)
         {
             case 0:
-                Instantiate(miniGames[Random.Range(0, miniGames.Length)], new Vector3(transform.position.x - 6, transform.position.y, transform.position.z), transform.rotation);
+                newMiniGame = Instantiate(miniGamePrefabs[Random.Range(0, miniGamePrefabs.Length)], new Vector3(transform.position.x - 6, transform.position.y, transform.position.z), transform.rotation);
                 break;
 
             case 1:
-                Instantiate(miniGames[Random.Range(0, miniGames.Length)], new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation);
+                newMiniGame = Instantiate(miniGamePrefabs[Random.Range(0, miniGamePrefabs.Length)], new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation);
                 break;
 
             case 2:
-                Instantiate(miniGames[Random.Range(0, miniGames.Length)], new Vector3(transform.position.x + 6, transform.position.y, transform.position.z), transform.rotation);
+                newMiniGame = Instantiate(miniGamePrefabs[Random.Range(0, miniGamePrefabs.Length)], new Vector3(transform.position.x + 6, transform.position.y, transform.position.z), transform.rotation);
                 break;
 
             default:
                 Debug.LogError("Not Valid Spawning Location");
+                newMiniGame = null;
                 break;
 
         }
-        spotFilled[location] = true;
+        miniGames[location] = newMiniGame.GetComponent<MiniGameBase>();
+        InputManager.instance.onClicks.AddRange(miniGames[location].GetComponentsInChildren<OnClickEvent>());
     }
 
-    public void CompletedMiniGame(int location)
+    public void CompletedMiniGame()
     {
-        spotFilled[location] = false;
+        for (int i = 0; i < numberOfSpots; i++) {
+            if (!miniGames[i].enabled) {
+                Debug.Log(InputManager.instance.onClicks.Count);
+                InputManager.instance.onClicks.RemoveAll(x => new List<OnClickEvent>(miniGames[i].GetComponentsInChildren<OnClickEvent>()).Contains(x));
+                Debug.Log(InputManager.instance.onClicks.Count);
+
+                Destroy(miniGames[i].gameObject);
+                SpawnGame(i);
+            }
+        }
 
         //Timer to next miniGame spawn?
-
-        SpawnGame(location);
+        
     }
 }

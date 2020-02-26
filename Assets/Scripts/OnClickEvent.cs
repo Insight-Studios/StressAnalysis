@@ -8,7 +8,7 @@
     public UnityEvent OnClick = new UnityEvent();
     public UnityEvent OnHover = new UnityEvent();
 
-    void OnValidate() {
+    void Start() {
         var clickables = GetComponents<IOnClick>();
         for(int i = 0; i < clickables.Length; i++)
          OnClick.AddListener(clickables[i].OnClick);

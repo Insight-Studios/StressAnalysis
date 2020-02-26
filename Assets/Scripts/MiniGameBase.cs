@@ -12,6 +12,8 @@ public abstract class MiniGameBase : MonoBehaviour
     private int currentScore;
     private bool gameOver;
 
+    public bool GameOver {get {return gameOver;}}
+
     public int Score {
         get {
             return currentScore;
@@ -20,12 +22,9 @@ public abstract class MiniGameBase : MonoBehaviour
             currentScore = value;
             scoreText.text = "Score: " + currentScore;
             if(currentScore >= requiredScore) {
-                OnComplete();
-                enabled = false;
+                OnEnd(0);
             } else if (currentScore == -1) {
-                gameOver = true;
-                OnGameOver();
-                enabled = false;
+                OnEnd(1);
             }
         }
     }
@@ -43,15 +42,25 @@ public abstract class MiniGameBase : MonoBehaviour
         if (!gameOver) {
             remainingTime -= Time.deltaTime;
             if(remainingTime <= 0) {
-                gameOver = true;
                 timerText.text = 0.ToString();
-                OnGameOver();
-                enabled = false;
+                OnEnd(1);
             } else {
                 timerText.text = Mathf.CeilToInt(remainingTime).ToString();
                 MiniGameUpdate();
             }
         }
+    }
+
+    private void OnEnd(int code)
+    {
+        if(code == 1) {
+            gameOver = true;
+            OnGameOver();
+        } else {
+            OnComplete();
+        }
+        enabled = false;
+        GameManager.instance.CompletedMiniGame();
     }
     
     public abstract void MiniGameStart();

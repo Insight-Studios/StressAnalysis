@@ -60,7 +60,7 @@ public class MathMiniGame : MiniGameBase
         missing = Random.Range(0, numbers.Length);
         currentOperation = (Operation) Random.Range(0, 4);
 
-        int num1 = Random.Range(0, 10);
+        int num1 = Random.Range(1, 10);
         int num2 = Random.Range(0, 10);
         switch (currentOperation) {
             case Operation.ADD:

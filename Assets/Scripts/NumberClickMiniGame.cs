@@ -33,7 +33,6 @@ public class NumberClickMiniGame : MiniGameBase
     {
         DisplayNum.text = "#";
         Debug.Log("Number Click completed");
-        GameObject.Find("Managers").GetComponent<GameManager>().CompletedMiniGame(Mathf.RoundToInt(transform.position.x / 6 + 1));
     }
 
     protected override void OnGameOver()
