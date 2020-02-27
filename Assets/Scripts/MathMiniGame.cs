@@ -23,16 +23,18 @@ public class MathMiniGame : MiniGameBase
     public override void ReceiveInput(int number)
     {
         switch(number) {
-            case -2:
-                if (int.Parse(numberTexts[missing].text) == numbers[missing]) {
+            case -2: //Submit Button
+                if(numberTexts[missing].text == "☐") {
+                    break;
+                } if (int.Parse(numberTexts[missing].text) == numbers[missing]) {
                     CreateEquation();
                     DisplayEquation();
                     Score++;
                 } else {
-                    Score = -1;
+                    Score = 0;
                 }
                 break;
-            case -1:
+            case -1: //Clear Button
                 numberTexts[missing].text = "☐";
                 break;
             default:
@@ -53,6 +55,7 @@ public class MathMiniGame : MiniGameBase
 
     protected override void OnGameOver()
     {
+        gameOver = false;
         Debug.Log("Math failed");
     }
 

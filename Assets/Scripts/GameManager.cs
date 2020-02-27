@@ -5,10 +5,11 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-
     public int numberOfSpots = 3;
-
     public GameObject[] miniGamePrefabs;
+    public TextMesh scoreText;
+
+    int OverallScore = 0;
 
     MiniGameBase[] miniGames;
 
@@ -25,6 +26,8 @@ public class GameManager : MonoBehaviour
             SpawnGame(i);
         }
         InputManager.instance.ReloadOnClicks();
+
+        scoreText.text = "Games Completed: " + OverallScore;
     }
 
     void SpawnGame(int location) //0 left, 1 middle, 2 right
@@ -55,13 +58,22 @@ public class GameManager : MonoBehaviour
         InputManager.instance.onClicks.AddRange(miniGames[location].GetComponentsInChildren<OnClickEvent>());
     }
 
-    public void CompletedMiniGame()
+    public void CompletedMiniGame(bool gameOver)
     {
+        if (gameOver)
+        {
+            Debug.LogWarning("GameOver");
+            return;
+        }
+        else
+        {
+            OverallScore++;
+            scoreText.text = "Games Completed: " + OverallScore;
+        }
+
         for (int i = 0; i < numberOfSpots; i++) {
             if (!miniGames[i].enabled) {
-                Debug.Log(InputManager.instance.onClicks.Count);
                 InputManager.instance.onClicks.RemoveAll(x => new List<OnClickEvent>(miniGames[i].GetComponentsInChildren<OnClickEvent>()).Contains(x));
-                Debug.Log(InputManager.instance.onClicks.Count);
 
                 Destroy(miniGames[i].gameObject);
                 SpawnGame(i);
@@ -69,6 +81,6 @@ public class GameManager : MonoBehaviour
         }
 
         //Timer to next miniGame spawn?
-        
+       
     }
 }

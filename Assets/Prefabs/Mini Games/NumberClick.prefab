@@ -172,7 +172,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1321882469288332}
-  m_Text: 'Score:'
+  m_Text: 'Score: 0'
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -314,9 +314,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 30
-  requiredScore: 10
+  requiredScore: 5
   timerText: {fileID: 102507466783435498}
   scoreText: {fileID: 102136102623177162}
+  gameOver: 0
   thisNumber: -1
   DisplayNum: {fileID: 3247594085006863313}
 --- !u!1 &462774180465449486

@@ -62,7 +62,7 @@ public class MemoryMiniGame : MiniGameBase
                     Score++;
                     pos++;
                 } else {
-                    Score = -1;
+                    Score = 0;
                 }
             break;
         }

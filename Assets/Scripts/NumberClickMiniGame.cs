@@ -25,7 +25,7 @@ public class NumberClickMiniGame : MiniGameBase
             Score ++;
         }
         else if(number != thisNumber) {
-            Score = -1;
+            Score = 0;
         }
     }
 

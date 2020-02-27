@@ -8,9 +8,11 @@ public abstract class MiniGameBase : MonoBehaviour
     public TextMesh timerText;
     public TextMesh scoreText;
 
+    [HideInInspector]
+    public bool gameOver;
+
     private float remainingTime;
     private int currentScore;
-    private bool gameOver;
 
     public bool GameOver {get {return gameOver;}}
 
@@ -22,9 +24,7 @@ public abstract class MiniGameBase : MonoBehaviour
             currentScore = value;
             scoreText.text = "Score: " + currentScore;
             if(currentScore >= requiredScore) {
-                OnEnd(0);
-            } else if (currentScore == -1) {
-                OnEnd(1);
+                OnEnd(false);
             }
         }
     }
@@ -43,7 +43,7 @@ public abstract class MiniGameBase : MonoBehaviour
             remainingTime -= Time.deltaTime;
             if(remainingTime <= 0) {
                 timerText.text = 0.ToString();
-                OnEnd(1);
+                OnEnd(true);
             } else {
                 timerText.text = Mathf.CeilToInt(remainingTime).ToString();
                 MiniGameUpdate();
@@ -51,16 +51,16 @@ public abstract class MiniGameBase : MonoBehaviour
         }
     }
 
-    private void OnEnd(int code)
+    private void OnEnd(bool timedOut)
     {
-        if(code == 1) {
+        if(timedOut) {
             gameOver = true;
             OnGameOver();
         } else {
             OnComplete();
         }
         enabled = false;
-        GameManager.instance.CompletedMiniGame();
+        GameManager.instance.CompletedMiniGame(timedOut);
     }
     
     public abstract void MiniGameStart();
