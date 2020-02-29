@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public int numberOfSpots = 3;
+    public float startSpawnDelay;
     public GameObject[] miniGamePrefabs;
     public TextMesh scoreText;
 

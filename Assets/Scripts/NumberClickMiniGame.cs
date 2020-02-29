@@ -6,7 +6,7 @@ public class NumberClickMiniGame : MiniGameBase
 {
     public int thisNumber = -1; 
 
-    public TextMesh DisplayNum;
+    public TextMesh displayNum;
 
     public override void MiniGameStart()
     {
@@ -14,24 +14,28 @@ public class NumberClickMiniGame : MiniGameBase
             thisNumber = Random.Range(1, 10);
         }
 
-        DisplayNum.text = thisNumber.ToString();
+        displayNum.text = thisNumber + "";
     }
 
     public override void ReceiveInput(int number)
     {
         if(number == thisNumber && enabled) {
             thisNumber = Random.Range(1, 10);
-            DisplayNum.text = thisNumber.ToString();
+
+            if (displayNum.text == thisNumber + ""){
+                thisNumber = Mathf.Abs(thisNumber - 4) + 1;
+            }
+
+            displayNum.text = thisNumber.ToString();
             Score ++;
-        }
-        else if(number != thisNumber) {
+        }else if(number != thisNumber) {
             Score = 0;
         }
     }
 
     protected override void OnComplete()
     {
-        DisplayNum.text = "#";
+        displayNum.text = "#";
         Debug.Log("Number Click completed");
     }
 
