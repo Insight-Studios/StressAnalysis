@@ -8,9 +8,7 @@ public abstract class MiniGameBase : MonoBehaviour
     public TextMesh timerText;
     public TextMesh scoreText;
 
-    [HideInInspector]
-    public bool gameOver;
-
+    private bool gameOver;
     private float remainingTime;
     private int currentScore;
 
@@ -23,7 +21,9 @@ public abstract class MiniGameBase : MonoBehaviour
         set {
             currentScore = value;
             scoreText.text = "Score: " + currentScore;
-            if(currentScore >= requiredScore) {
+            if (value == -1)
+                OnEnd(true);
+            else if(currentScore >= requiredScore) {
                 OnEnd(false);
             }
         }

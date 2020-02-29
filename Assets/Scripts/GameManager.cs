@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
+    public static GameManager instance = null;
     public int numberOfSpots = 3;
     public GameObject[] miniGamePrefabs;
     public TextMesh scoreText;
@@ -13,19 +14,25 @@ public class GameManager : MonoBehaviour
 
     MiniGameBase[] miniGames;
 
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        } else 
+        {
+            Destroy(gameObject);
+            throw new System.Exception("Singleton instantiated twice.");
+        }
+    }
+
     void Start()
     {
-        if(instance==null)
-            instance = this;
-        else
-            throw new System.Exception("Singleton instantiated twice.");
-
         miniGames = new MiniGameBase[numberOfSpots];
 
         for(int i = 0; i < numberOfSpots; i++) {
             SpawnGame(i);
         }
-        InputManager.instance.ReloadOnClicks();
 
         scoreText.text = "Games Completed: " + OverallScore;
     }
@@ -55,7 +62,7 @@ public class GameManager : MonoBehaviour
 
         }
         miniGames[location] = newMiniGame.GetComponent<MiniGameBase>();
-        InputManager.instance.onClicks.AddRange(miniGames[location].GetComponentsInChildren<OnClickEvent>());
+        InputManager.instance.RegisterGameObject(miniGames[location].gameObject);
     }
 
     public void CompletedMiniGame(bool gameOver)
@@ -63,6 +70,7 @@ public class GameManager : MonoBehaviour
         if (gameOver)
         {
             Debug.LogWarning("GameOver");
+            GameOver();
             return;
         }
         else
@@ -73,7 +81,7 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < numberOfSpots; i++) {
             if (!miniGames[i].enabled) {
-                InputManager.instance.onClicks.RemoveAll(x => new List<OnClickEvent>(miniGames[i].GetComponentsInChildren<OnClickEvent>()).Contains(x));
+                InputManager.instance.UnRegisterGameObject(miniGames[i].gameObject);
 
                 Destroy(miniGames[i].gameObject);
                 SpawnGame(i);
@@ -82,5 +90,16 @@ public class GameManager : MonoBehaviour
 
         //Timer to next miniGame spawn?
        
+    }
+
+    public void GameOver()
+    {
+        foreach(MiniGameBase miniGame in miniGames)
+        {
+            InputManager.instance.UnRegisterGameObject(miniGame.gameObject);
+            Destroy(miniGame.gameObject);
+        }
+
+        SceneManager.LoadScene(1);
     }
 }

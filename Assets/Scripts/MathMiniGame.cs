@@ -55,7 +55,6 @@ public class MathMiniGame : MiniGameBase
 
     protected override void OnGameOver()
     {
-        gameOver = false;
         Debug.Log("Math failed");
     }
 
