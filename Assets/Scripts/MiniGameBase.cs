@@ -2,9 +2,11 @@
 
 public abstract class MiniGameBase : MonoBehaviour
 {
-
     public float lifeTime = 30;
+    public float warningPercentage;
+    public Material warningMat;
     public int requiredScore = 5;
+    public GameObject background;
     public TextMesh timerText;
     public TextMesh scoreText;
 
@@ -48,6 +50,11 @@ public abstract class MiniGameBase : MonoBehaviour
                 timerText.text = Mathf.CeilToInt(remainingTime).ToString();
                 MiniGameUpdate();
             }
+        }
+
+        if (remainingTime <= lifeTime * warningPercentage)
+        {
+            background.GetComponent<MeshRenderer>().material = warningMat;
         }
     }
 

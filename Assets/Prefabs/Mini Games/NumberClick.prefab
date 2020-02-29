@@ -314,12 +314,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 30
+  warningPercentage: 0.2
+  warningMat: {fileID: 2100000, guid: 9083f3a8e361f174cbad6327f4dd3746, type: 2}
   requiredScore: 5
+  background: {fileID: 1804948719312906}
   timerText: {fileID: 102507466783435498}
   scoreText: {fileID: 102136102623177162}
   gameOver: 0
   thisNumber: -1
-  DisplayNum: {fileID: 3247594085006863313}
+  displayNum: {fileID: 3247594085006863313}
 --- !u!1 &462774180465449486
 GameObject:
   m_ObjectHideFlags: 0
