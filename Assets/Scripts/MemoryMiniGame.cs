@@ -53,7 +53,7 @@ public class MemoryMiniGame : MiniGameBase
         CurrentDisplaySequence = null;
 
         switch (number) {
-            case -1:
+            case -1: //Reset Button
                 CreateSequence();
                 CurrentDisplaySequence = DisplaySequence();
                 break;

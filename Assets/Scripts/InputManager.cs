@@ -6,7 +6,8 @@ public class InputManager : MonoBehaviour
 {
     public static InputManager instance = null;
 
-    public List<OnClickEvent> onClicks;
+    private List<OnClickEvent> onClicks = new List<OnClickEvent>();
+    private MiniGameBase focus;
 
     void Awake()
     {
@@ -23,10 +24,10 @@ public class InputManager : MonoBehaviour
 
     void Start()
     {
-        // Do stuff
+
     }
 
-    void Update ()
+    void Update()
     {
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit Hit;
@@ -42,13 +43,73 @@ public class InputManager : MonoBehaviour
                         break;
                     }
                 }
+                focus = Hit.collider.GetComponentInParent<MiniGameBase>();
+                print(focus);
             }
+        }
+    }
+
+    void OnGUI()
+    {
+        Event e = Event.current;
+        if (e.isKey)
+        {
+            if (focus != null && Input.GetKeyDown(e.keyCode)) 
+                switch (e.keyCode)
+                {
+                    case KeyCode.Alpha0:
+                    case KeyCode.Keypad0:
+                        focus.ReceiveInput(0);
+                        break;
+                    case KeyCode.Alpha1:
+                    case KeyCode.Keypad1:
+                        focus.ReceiveInput(1);
+                        break;
+                    case KeyCode.Alpha2:
+                    case KeyCode.Keypad2:
+                        focus.ReceiveInput(2);
+                        break;
+                    case KeyCode.Alpha3:
+                    case KeyCode.Keypad3:
+                        focus.ReceiveInput(3);
+                        break;
+                    case KeyCode.Alpha4:
+                    case KeyCode.Keypad4:
+                        focus.ReceiveInput(4);
+                        break;
+                    case KeyCode.Alpha5:
+                    case KeyCode.Keypad5:
+                        focus.ReceiveInput(5);
+                        break;
+                    case KeyCode.Alpha6:
+                    case KeyCode.Keypad6:
+                        focus.ReceiveInput(6);
+                        break;
+                    case KeyCode.Alpha7:
+                    case KeyCode.Keypad7:
+                        focus.ReceiveInput(7);
+                        break;
+                    case KeyCode.Alpha8:
+                    case KeyCode.Keypad8:
+                        focus.ReceiveInput(8);
+                        break;
+                    case KeyCode.Alpha9:
+                    case KeyCode.Keypad9:
+                        focus.ReceiveInput(9);
+                        break;
+                    case KeyCode.Return:
+                    case KeyCode.KeypadEnter:
+                        focus.ReceiveInput(-1);
+                        break;
+                    case KeyCode.Backspace:
+                        focus.ReceiveInput(-2);
+                        break;
+                }
         }
     }
 
     public void RegisterGameObject(GameObject obj)
     {
-        print(obj.GetComponentsInChildren<OnClickEvent>().Length);
         onClicks.AddRange(obj.GetComponentsInChildren<OnClickEvent>());
     }
 

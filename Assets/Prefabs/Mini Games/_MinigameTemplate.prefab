@@ -197,6 +197,7 @@ GameObject:
   - component: {fileID: 4617240531073076}
   - component: {fileID: 33846226088286408}
   - component: {fileID: 23676083188248984}
+  - component: {fileID: 7799214290272063708}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -212,7 +213,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1804948719312906}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 0.49, y: 1, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4216413002807734}
@@ -265,6 +266,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &7799214290272063708
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1804948719312906}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 2.2204466e-16, z: 10.000002}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1834132632805422
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,7 +333,6 @@ MonoBehaviour:
   background: {fileID: 1804948719312906}
   timerText: {fileID: 102507466783435498}
   scoreText: {fileID: 102136102623177162}
-  gameOver: 0
 --- !u!1001 &7496877264292126214
 PrefabInstance:
   m_ObjectHideFlags: 0

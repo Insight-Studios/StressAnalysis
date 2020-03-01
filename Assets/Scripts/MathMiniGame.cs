@@ -23,7 +23,7 @@ public class MathMiniGame : MiniGameBase
     public override void ReceiveInput(int number)
     {
         switch(number) {
-            case -2: //Submit Button
+            case -1: //Submit Button
                 if(numberTexts[missing].text == "☐") {
                     break;
                 } if (int.Parse(numberTexts[missing].text) == numbers[missing]) {
@@ -34,7 +34,7 @@ public class MathMiniGame : MiniGameBase
                     Score = 0;
                 }
                 break;
-            case -1: //Clear Button
+            case -2: //Clear Button
                 numberTexts[missing].text = "☐";
                 break;
             default:
