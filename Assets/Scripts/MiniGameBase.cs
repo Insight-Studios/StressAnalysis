@@ -4,11 +4,12 @@ public abstract class MiniGameBase : MonoBehaviour
 {
     public float lifeTime = 30;
     public float warningPercentage;
-    public Material warningMat;
-    public int requiredScore = 5;
+    public Material warningMat;   
     public GameObject background;
+    public GameObject[] checkBoxes;
     public TextMesh timerText;
-    public TextMesh scoreText;
+    [HideInInspector]
+    public int requiredScore;
 
     private bool gameOver;
     private float remainingTime;
@@ -22,7 +23,17 @@ public abstract class MiniGameBase : MonoBehaviour
         }
         set {
             currentScore = value;
-            scoreText.text = "Score: " + currentScore;
+            if (value == 0)
+            {
+                for (int i = 0; i < requiredScore; i++)
+                {
+                    checkBoxes[i].GetComponent<CheckBox>().DisableCheck();
+                }
+            }
+            else
+            {
+                checkBoxes[value - 1].GetComponent<CheckBox>().ActivateCheck();
+            }
             if (value == -1)
                 OnEnd(true);
             else if(currentScore >= requiredScore) {
@@ -33,6 +44,7 @@ public abstract class MiniGameBase : MonoBehaviour
 
     void Start()
     {
+        requiredScore = checkBoxes.Length;
         remainingTime = lifeTime;
         currentScore = 0;
         gameOver = false;
