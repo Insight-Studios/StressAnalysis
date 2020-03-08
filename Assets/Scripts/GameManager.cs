@@ -11,15 +11,17 @@ public class GameManager : MonoBehaviour
     public GameObject[] miniGamePrefabs;
     public TextMesh scoreText;
 
-    int OverallScore = 0;
+    int overallScore = 0;
 
-    MiniGameBase[] miniGames;
+    [HideInInspector]
+    public MiniGameBase[] miniGames;
 
     void Awake()
     {
         if (instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         } else 
         {
             Destroy(gameObject);
@@ -35,7 +37,7 @@ public class GameManager : MonoBehaviour
             SpawnGame(i);
         }
 
-        scoreText.text = "Games Completed: " + OverallScore;
+        scoreText.text = "Score: " + overallScore;
     }
 
     void SpawnGame(int location) //0 left, 1 middle, 2 right
@@ -75,8 +77,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            OverallScore++;
-            scoreText.text = "Games Completed: " + OverallScore;
+            overallScore++;
+            scoreText.text = "Score: " + overallScore;
         }
 
         for (int i = 0; i < numberOfSpots; i++) {
@@ -101,5 +103,8 @@ public class GameManager : MonoBehaviour
         }
 
         SceneManager.LoadScene(1);
+        scoreText.GetComponent<TextMesh>().color = Color.white;
+        scoreText.GetComponent<TextMesh>().fontSize = 100;
+        scoreText.GetComponent<TextMesh>().text += "!"; 
     }
 }
