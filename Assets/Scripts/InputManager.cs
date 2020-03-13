@@ -6,6 +6,7 @@ public class InputManager : MonoBehaviour
 {
     public static InputManager instance = null;
     public GameObject selectedMiniGameIcon;
+    public GameObject exitGame;
 
     List<OnClickEvent> onClicks = new List<OnClickEvent>();
     MiniGameBase selectedMiniGame;
@@ -17,7 +18,8 @@ public class InputManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-        } else
+        }
+        else
         {
             Destroy(gameObject);
             throw new System.Exception("Singleton instantiated twice.");
@@ -55,10 +57,25 @@ public class InputManager : MonoBehaviour
     void OnGUI()
     {
         Event e = Event.current;
-        if (e.isKey)
+        if (e.isKey && Input.GetKeyDown(e.keyCode))
         {
+            if (e.keyCode == KeyCode.Escape)
+            {
+                exitGame.SetActive(!exitGame.activeSelf);
+            }
+            if ((e.keyCode == KeyCode.Return || e.keyCode == KeyCode.KeypadEnter) && exitGame.activeSelf)
+            {
+                Debug.LogWarning("Exit Game");
+                Application.Quit();
+            }
+
+            if (exitGame.activeSelf)
+            {
+                return;
+            }
+
             //MiniGame Inputs
-            if (selectedMiniGame != null && Input.GetKeyDown(e.keyCode)) 
+            if (selectedMiniGame != null) 
             switch (e.keyCode)
             {
                 case KeyCode.Alpha0:
@@ -112,37 +129,34 @@ public class InputManager : MonoBehaviour
             }
 
             //MiniGame Selection Inputs
-            if (Input.GetKeyDown(e.keyCode))
+            switch (e.keyCode)
             {
-                switch (e.keyCode)
-                {
-                    case KeyCode.LeftArrow:
-                    case KeyCode.A:
-                        if (selectedMiniGameIcon.transform.position.x == -6)
-                        {
-                            selectedMiniGameIcon.transform.position += 12 * Vector3.right;
-                        }
-                        else
-                        {
-                            selectedMiniGameIcon.transform.position += 6 * Vector3.left;
-                        }
-                        break;
+                case KeyCode.LeftArrow:
+                case KeyCode.A:
+                    if (selectedMiniGameIcon.transform.position.x == -6)
+                    {
+                        selectedMiniGameIcon.transform.position += 12 * Vector3.right;
+                    }
+                    else
+                    {
+                        selectedMiniGameIcon.transform.position += 6 * Vector3.left;
+                    }
+                    break;
 
-                    case KeyCode.RightArrow:
-                    case KeyCode.D:
-                        if (selectedMiniGameIcon.transform.position.x == 6)
-                        {
-                            selectedMiniGameIcon.transform.position += 12 * Vector3.left;
-                        }
-                        else
-                        {
-                            selectedMiniGameIcon.transform.position += 6 * Vector3.right;
-                        }
-                        break;
-                }
-                selectedMiniGameIcon.SetActive(true);
-                selectedMiniGame = GameManager.instance.miniGames[Mathf.RoundToInt(selectedMiniGameIcon.transform.position.x / 6 + 1)];
+                case KeyCode.RightArrow:
+                case KeyCode.D:
+                    if (selectedMiniGameIcon.transform.position.x == 6)
+                    {
+                        selectedMiniGameIcon.transform.position += 12 * Vector3.left;
+                    }
+                    else
+                    {
+                        selectedMiniGameIcon.transform.position += 6 * Vector3.right;
+                    }
+                    break;
             }
+            selectedMiniGameIcon.SetActive(true);
+            selectedMiniGame = GameManager.instance.miniGames[Mathf.RoundToInt(selectedMiniGameIcon.transform.position.x / 6 + 1)];
         }
     }
 

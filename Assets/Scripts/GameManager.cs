@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        foreach(MiniGameBase miniGame in miniGames)
+        foreach (MiniGameBase miniGame in miniGames)
         {
             InputManager.instance.UnRegisterGameObject(miniGame.gameObject);
             Destroy(miniGame.gameObject);
@@ -106,5 +106,18 @@ public class GameManager : MonoBehaviour
         scoreText.GetComponent<TextMesh>().color = Color.white;
         scoreText.GetComponent<TextMesh>().fontSize = 100;
         scoreText.GetComponent<TextMesh>().text += "!"; 
+    }
+
+    public void ExitGame(bool exiting)
+    {
+        if (exiting)
+        {
+            Debug.LogWarning("Game Exited");
+            Application.Quit();
+        }
+        else
+        {
+            InputManager.instance.exitGame.SetActive(false);
+        }
     }
 }
