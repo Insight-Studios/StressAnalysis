@@ -9,7 +9,57 @@ public class InputManager : MonoBehaviour
     public GameObject exitGame;
 
     List<OnClickEvent> onClicks = new List<OnClickEvent>();
+    public MiniGameBase SelectedMiniGame
+    {
+        get
+        {
+            return selectedMiniGame;
+        }
+        set
+        {
+            bool exists = false;
+            for (int i = 0; i < GameManager.instance.miniGames.Length; i++)
+            {
+                if (GameManager.instance.miniGames[i] == value)
+                {
+                    selectedMiniGameIndex = i;
+                    exists = true;
+                    break;
+                }
+            }
+
+            if (!exists)
+            {
+                Debug.LogWarning("Invalid SelectedMiniGame");
+                return;
+            }
+            
+            selectedMiniGame = value;
+            selectedMiniGameIcon.SetActive(true);
+            selectedMiniGameIcon.transform.Translate(selectedMiniGame.transform.position.x - selectedMiniGameIcon.transform.position.x, selectedMiniGame.transform.position.y - selectedMiniGameIcon.transform.position.y, 0);
+        }
+    }
     MiniGameBase selectedMiniGame;
+    public int SelectedMiniGameIndex
+    {
+        get 
+        {
+            return selectedMiniGameIndex;
+        }
+        set 
+        {
+            if (value >= GameManager.instance.miniGames.Length)
+                value = 0;
+            else if (value < 0)
+                value = GameManager.instance.miniGames.Length - 1;
+            selectedMiniGameIndex = value;
+            selectedMiniGame = GameManager.instance.miniGames[value];
+            selectedMiniGameIcon.SetActive(true);
+            selectedMiniGameIcon.transform.Translate(selectedMiniGame.transform.position.x - selectedMiniGameIcon.transform.position.x, selectedMiniGame.transform.position.y - selectedMiniGameIcon.transform.position.y, 0);
+        }
+    }
+    int selectedMiniGameIndex;
+
     Vector3 prevMousePos;
 
     void Awake()
@@ -32,6 +82,7 @@ public class InputManager : MonoBehaviour
         RaycastHit Hit;
         if (Physics.Raycast(ray, out Hit))
         {
+            MiniGameBase hoveredMiniGame = Hit.collider.gameObject.GetComponentInParent<MiniGameBase>();
             if (Input.GetMouseButtonDown(0))
             {
                 for (int i = 0; i < onClicks.Count; i++)
@@ -42,16 +93,18 @@ public class InputManager : MonoBehaviour
                         break;
                     }
                 }
-            }
 
-            if (selectedMiniGame != Hit.collider.GetComponentInParent<MiniGameBase>() && Hit.collider.GetComponentInParent<MiniGameBase>() && prevMousePos != Input.mousePosition)
-            {
-                selectedMiniGameIcon.SetActive(true);
-                selectedMiniGame = Hit.collider.GetComponentInParent<MiniGameBase>();
-                selectedMiniGameIcon.transform.position = new Vector3(selectedMiniGame.gameObject.GetComponent<Transform>().position.x, selectedMiniGameIcon.transform.position.y, selectedMiniGameIcon.transform.position.z);
+                if (hoveredMiniGame != null)
+                {
+                    SelectedMiniGame = hoveredMiniGame;
+                }
+                else
+                {
+                    selectedMiniGame = null;
+                    selectedMiniGameIcon.SetActive(false);
+                }
             }
         }
-        prevMousePos = Input.mousePosition;
     }
 
     void OnGUI()
@@ -75,88 +128,21 @@ public class InputManager : MonoBehaviour
             }
 
             //MiniGame Inputs
-            if (selectedMiniGame != null) 
-            switch (e.keyCode)
-            {
-                case KeyCode.Alpha0:
-                case KeyCode.Keypad0:
-                    selectedMiniGame.ReceiveInput(0);
-                    break;
-                case KeyCode.Alpha1:
-                case KeyCode.Keypad1:
-                    selectedMiniGame.ReceiveInput(1);
-                    break;
-                case KeyCode.Alpha2:
-                case KeyCode.Keypad2:
-                    selectedMiniGame.ReceiveInput(2);
-                    break;
-                case KeyCode.Alpha3:
-                case KeyCode.Keypad3:
-                    selectedMiniGame.ReceiveInput(3);
-                    break;
-                case KeyCode.Alpha4:
-                case KeyCode.Keypad4:
-                    selectedMiniGame.ReceiveInput(4);
-                    break;
-                case KeyCode.Alpha5:
-                case KeyCode.Keypad5:
-                    selectedMiniGame.ReceiveInput(5);
-                    break;
-                case KeyCode.Alpha6:
-                case KeyCode.Keypad6:
-                    selectedMiniGame.ReceiveInput(6);
-                    break;
-                case KeyCode.Alpha7:
-                case KeyCode.Keypad7:
-                    selectedMiniGame.ReceiveInput(7);
-                    break;
-                case KeyCode.Alpha8:
-                case KeyCode.Keypad8:
-                    selectedMiniGame.ReceiveInput(8);
-                    break;
-                case KeyCode.Alpha9:
-                case KeyCode.Keypad9:
-                    selectedMiniGame.ReceiveInput(9);
-                    break;
-                case KeyCode.Return:
-                case KeyCode.KeypadEnter:
-                    selectedMiniGame.ReceiveInput(-1);
-                    break;
-                case KeyCode.Backspace:
-                case KeyCode.Delete:
-                    selectedMiniGame.ReceiveInput(-2);
-                    break;
-            }
+            if (selectedMiniGame != null) selectedMiniGame.SendInput(e.keyCode);
 
             //MiniGame Selection Inputs
             switch (e.keyCode)
             {
                 case KeyCode.LeftArrow:
                 case KeyCode.A:
-                    if (selectedMiniGameIcon.transform.position.x == -6)
-                    {
-                        selectedMiniGameIcon.transform.position += 12 * Vector3.right;
-                    }
-                    else
-                    {
-                        selectedMiniGameIcon.transform.position += 6 * Vector3.left;
-                    }
+                    SelectedMiniGameIndex -= 1;
                     break;
 
                 case KeyCode.RightArrow:
                 case KeyCode.D:
-                    if (selectedMiniGameIcon.transform.position.x == 6)
-                    {
-                        selectedMiniGameIcon.transform.position += 12 * Vector3.left;
-                    }
-                    else
-                    {
-                        selectedMiniGameIcon.transform.position += 6 * Vector3.right;
-                    }
+                    SelectedMiniGameIndex += 1;
                     break;
             }
-            selectedMiniGameIcon.SetActive(true);
-            selectedMiniGame = GameManager.instance.miniGames[Mathf.RoundToInt(selectedMiniGameIcon.transform.position.x / 6 + 1)];
         }
     }
 

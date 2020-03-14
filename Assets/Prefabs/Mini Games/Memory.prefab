@@ -401,7 +401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
-  number: -1
+  key: 271
 --- !u!1001 &1227887300074657607
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -86,7 +86,54 @@ public abstract class MiniGameBase : MonoBehaviour
 
     protected virtual void MiniGameUpdate() {}
 
-    public abstract void ReceiveInput(int number);
+    protected abstract void SendNumber(int number);
+
+    public virtual void SendInput(KeyCode key)
+    {
+        switch (key)
+        {            
+            case KeyCode.Alpha0:
+            case KeyCode.Keypad0:
+                SendNumber(0);
+                break;
+            case KeyCode.Alpha1:
+            case KeyCode.Keypad1:
+                SendNumber(1);
+                break;
+            case KeyCode.Alpha2:
+            case KeyCode.Keypad2:
+                SendNumber(2);
+                break;
+            case KeyCode.Alpha3:
+            case KeyCode.Keypad3:
+                SendNumber(3);
+                break;
+            case KeyCode.Alpha4:
+            case KeyCode.Keypad4:
+                SendNumber(4);
+                break;
+            case KeyCode.Alpha5:
+            case KeyCode.Keypad5:
+                SendNumber(5);
+                break;
+            case KeyCode.Alpha6:
+            case KeyCode.Keypad6:
+                SendNumber(6);
+                break;
+            case KeyCode.Alpha7:
+            case KeyCode.Keypad7:
+                SendNumber(7);
+                break;
+            case KeyCode.Alpha8:
+            case KeyCode.Keypad8:
+                SendNumber(8);
+                break;
+            case KeyCode.Alpha9:
+            case KeyCode.Keypad9:
+                SendNumber(9);
+                break;
+        }
+    }
 
     protected abstract void OnGameOver();
 

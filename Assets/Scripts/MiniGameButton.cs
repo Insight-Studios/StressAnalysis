@@ -6,9 +6,9 @@ using UnityEngine;
 public class MiniGameButton : MonoBehaviour, IOnClick
 {
     public MiniGameBase owner;
-    public int number;
+    public KeyCode key;
 
-    void Start() {
+    void Awake() {
         if(owner == null) {
             owner = GetComponentInParent<MiniGameBase>();
         }
@@ -17,6 +17,7 @@ public class MiniGameButton : MonoBehaviour, IOnClick
     public void OnClick()
     {
         if (owner.enabled)
-            owner.ReceiveInput(number);
+            owner.SendInput(key);
+            InputManager.instance.SelectedMiniGame = owner;
     }
 }

@@ -24,7 +24,7 @@ public class TestMiniGame : MiniGameBase
         Debug.Log("MiniGame Test failed");
     }
 
-    public override void ReceiveInput(int number)
+    protected override void SendNumber(int number)
     {
         Debug.Log("Received #:" +  number);
     }

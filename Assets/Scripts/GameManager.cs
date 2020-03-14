@@ -84,9 +84,12 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < numberOfSpots; i++) {
             if (!miniGames[i].enabled) {
                 InputManager.instance.UnRegisterGameObject(miniGames[i].gameObject);
-
                 Destroy(miniGames[i].gameObject);
                 SpawnGame(i);
+                if (i == InputManager.instance.SelectedMiniGameIndex)
+                {
+                    InputManager.instance.SelectedMiniGameIndex = i;
+                }
             }
         }
 

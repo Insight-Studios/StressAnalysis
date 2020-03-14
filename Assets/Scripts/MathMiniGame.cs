@@ -20,10 +20,19 @@ public class MathMiniGame : MiniGameBase
         DisplayEquation();
     }
 
-    public override void ReceiveInput(int number)
+    protected override void SendNumber(int number)
     {
-        switch(number) {
-            case -1: //Submit Button
+        if(numberTexts[missing].text == "☐")
+            numberTexts[missing].text = "";
+        numberTexts[missing].text += number.ToString();
+    }
+
+    public override void SendInput(KeyCode key)
+    {
+        switch (key)
+        {
+            case KeyCode.Return:
+            case KeyCode.KeypadEnter:
                 if(numberTexts[missing].text == "☐") {
                     break;
                 } if (int.Parse(numberTexts[missing].text) == numbers[missing]) {
@@ -34,15 +43,15 @@ public class MathMiniGame : MiniGameBase
                     Score = 0;
                 }
                 break;
-            case -2: //Clear Button
+            case KeyCode.Delete:
                 numberTexts[missing].text = "☐";
                 break;
-            default:
-                if(numberTexts[missing].text == "☐")
-                    numberTexts[missing].text = "";
-                numberTexts[missing].text += number.ToString();
+            case KeyCode.Backspace:
+                numberTexts[missing].text = numberTexts[missing].text.Substring(0, numberTexts[missing].text.Length-1);
                 break;
         }
+        
+        base.SendInput(key);
     }
 
     protected override void OnComplete()

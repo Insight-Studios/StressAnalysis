@@ -45,28 +45,32 @@ public class MemoryMiniGame : MiniGameBase
             values[i] = int.Parse(numbers[i].text);
         }
         CreateSequence();
-        CurrentDisplaySequence = DisplaySequence();
     }
 
-    public override void ReceiveInput(int number)
+    protected override void SendNumber(int number)
     {
         CurrentDisplaySequence = null;
 
-        switch (number) {
-            case -1: //Reset Button
+        if (number == values[sequence[pos]]) {
+            Score++;
+            pos++;
+        } else {
+            Score = 0;
+            CreateSequence();
+        }
+    }
+
+    public override void SendInput(KeyCode key)
+    {
+        switch (key)
+        {
+            case KeyCode.KeypadEnter:
+            case KeyCode.Return:
                 CreateSequence();
-                CurrentDisplaySequence = DisplaySequence();
                 break;
-            default:
-                if (number == values[sequence[pos]]) {
-                    Score++;
-                    pos++;
-                } else {
-                    Score = 0;
-                }
-            break;
         }
 
+        base.SendInput(key);
     }
 
     protected override void OnComplete()
@@ -88,6 +92,7 @@ public class MemoryMiniGame : MiniGameBase
         }
         Score = 0;
         pos = 0;
+        CurrentDisplaySequence = DisplaySequence();
     }
 
     IEnumerator DisplaySequence()

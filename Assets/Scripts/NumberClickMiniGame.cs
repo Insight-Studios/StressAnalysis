@@ -17,18 +17,21 @@ public class NumberClickMiniGame : MiniGameBase
         displayNum.text = thisNumber + "";
     }
 
-    public override void ReceiveInput(int number)
+    protected override void SendNumber(int number)
     {
-        if(number == thisNumber && enabled) {
+        if (number == thisNumber && enabled)
+        {
             thisNumber = Random.Range(1, 10);
 
-            if (displayNum.text == thisNumber + ""){
+            if (displayNum.text == thisNumber + "")
+            {
                 thisNumber = Mathf.Abs(thisNumber - 4) + 1;
             }
 
             displayNum.text = thisNumber.ToString();
             Score ++;
-        }else if(number != thisNumber) {
+        } else if (number != thisNumber)
+        {
             Score = 0;
         }
     }
