@@ -755,7 +755,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
-  key: 0
+  key: 256
 --- !u!1 &2272350252908114889
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,13 +5,42 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public bool IsPaused 
+    {
+        get
+        {
+            return isPaused;
+        }
+
+        set
+        {
+            foreach (MiniGameBase miniGame in miniGames)
+            {
+                miniGame.gameObject.SetActive(!value);
+            }
+
+            if (value)
+            {
+                InputManager.instance.selectedMiniGameIcon.SetActive(false);
+            }
+            else
+            {
+                InputManager.instance.selectedMiniGameIcon.SetActive(InputManager.instance.SelectedMiniGame!=null);
+            }
+
+            pauseMenu.SetActive(value);
+            isPaused = value;
+        }
+    }
+    private bool isPaused = false;
     public static GameManager instance = null;
     public int numberOfSpots = 3;
     public float startSpawnDelay;
     public GameObject[] miniGamePrefabs;
     public TextMesh scoreText;
+    public GameObject pauseMenu;
 
-    int overallScore = 0;
+    private int score;
 
     [HideInInspector]
     public MiniGameBase[] miniGames;
@@ -21,8 +50,8 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
-        } else 
+        }
+        else 
         {
             Destroy(gameObject);
             throw new System.Exception("Singleton instantiated twice.");
@@ -37,7 +66,9 @@ public class GameManager : MonoBehaviour
             SpawnGame(i);
         }
 
-        scoreText.text = "Score: " + overallScore;
+        score = 0;
+        scoreText.text = "Score: " + score;
+        IsPaused = false;
     }
 
     void SpawnGame(int location) //0 left, 1 middle, 2 right
@@ -77,8 +108,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            overallScore++;
-            scoreText.text = "Score: " + overallScore;
+            score++;
+            scoreText.text = "Score: " + score;
         }
 
         for (int i = 0; i < numberOfSpots; i++) {
@@ -91,10 +122,7 @@ public class GameManager : MonoBehaviour
                     InputManager.instance.SelectedMiniGameIndex = i;
                 }
             }
-        }
-
-        //Timer to next miniGame spawn?
-       
+        }       
     }
 
     public void GameOver()
@@ -102,25 +130,42 @@ public class GameManager : MonoBehaviour
         foreach (MiniGameBase miniGame in miniGames)
         {
             InputManager.instance.UnRegisterGameObject(miniGame.gameObject);
+            InputManager.instance.selectedMiniGameIcon.SetActive(false);
             Destroy(miniGame.gameObject);
         }
 
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
+        
+        DontDestroyOnLoad(scoreText);
         scoreText.GetComponent<TextMesh>().color = Color.white;
         scoreText.GetComponent<TextMesh>().fontSize = 100;
         scoreText.GetComponent<TextMesh>().text += "!"; 
     }
 
-    public void ExitGame(bool exiting)
+    public void UnPause()
     {
-        if (exiting)
+        IsPaused = false;
+    }
+
+    public void Pause()
+    {
+        IsPaused = true;
+    }
+
+    public void Restart()
+    {
+        foreach (MiniGameBase miniGame in miniGames)
         {
-            Debug.LogWarning("Game Exited");
-            Application.Quit();
+            InputManager.instance.UnRegisterGameObject(miniGame.gameObject);
+            Destroy(miniGame.gameObject);
         }
-        else
-        {
-            InputManager.instance.exitGame.SetActive(false);
-        }
+
+        Start();
+    }
+
+    public void Exit()
+    {
+        GameManager.instance = null;
+        SceneManager.LoadScene(0);
     }
 }
