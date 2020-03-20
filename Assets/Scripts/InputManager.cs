@@ -110,7 +110,7 @@ public class InputManager : MonoBehaviour
         if (e.isKey && Input.GetKeyDown(e.keyCode))
         {
             //MiniGame Selection Inputs
-            switch (e.keyCode)
+            if (!GameManager.instance.IsPaused) switch (e.keyCode)
             {
                 case KeyCode.LeftArrow:
                 case KeyCode.A:
@@ -121,11 +121,17 @@ public class InputManager : MonoBehaviour
                     SelectedMiniGameIndex += 1;
                     break;
                 case KeyCode.Escape:
-                    GameManager.instance.IsPaused = !GameManager.instance.IsPaused;
+                    GameManager.instance.IsPaused = true;
                     break;
                 default:
                     //MiniGame Inputs
                     if (selectedMiniGame != null) selectedMiniGame.SendInput(e.keyCode);
+                    break;
+            }
+            else switch (e.keyCode)
+            {
+                case KeyCode.Escape:
+                    GameManager.instance.IsPaused = false;
                     break;
             }
         }

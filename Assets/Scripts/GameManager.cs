@@ -62,13 +62,20 @@ public class GameManager : MonoBehaviour
     {
         miniGames = new MiniGameBase[numberOfSpots];
 
-        for(int i = 0; i < numberOfSpots; i++) {
-            SpawnGame(i);
-        }
+        StartCoroutine(SpawnAllGames());
 
         score = 0;
         scoreText.text = "Score: " + score;
         IsPaused = false;
+    }
+
+    IEnumerator SpawnAllGames()
+    {
+        for (int i = 0; i < numberOfSpots; i++)
+        {
+            SpawnGame(i);
+            yield return new WaitForSeconds(startSpawnDelay);
+        }
     }
 
     void SpawnGame(int location) //0 left, 1 middle, 2 right
@@ -92,7 +99,7 @@ public class GameManager : MonoBehaviour
             default:
                 Debug.LogError("Not Valid Spawning Location");
                 newMiniGame = null;
-                break;
+                return;
 
         }
         miniGames[location] = newMiniGame.GetComponent<MiniGameBase>();
@@ -135,7 +142,7 @@ public class GameManager : MonoBehaviour
         }
 
         SceneManager.LoadScene(2);
-        
+
         DontDestroyOnLoad(scoreText);
         scoreText.GetComponent<TextMesh>().color = Color.white;
         scoreText.GetComponent<TextMesh>().fontSize = 100;
