@@ -121,7 +121,7 @@ Transform:
   m_GameObject: {fileID: 1804948719312906}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 0.49, y: 1, z: 0.5}
+  m_LocalScale: {x: 0.5, y: 1, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4216413002807734}
   m_RootOrder: 1
@@ -235,7 +235,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 427f6489f74c37a4198459adcdeeb60a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 30
   warningPercentage: 0.2
   warningMat: {fileID: 2100000, guid: 9083f3a8e361f174cbad6327f4dd3746, type: 2}
   background: {fileID: 1804948719312906}
@@ -245,6 +244,7 @@ MonoBehaviour:
   - {fileID: 3949583643070352701}
   timerText: {fileID: 102507466783435498}
   requiredScore: 1
+  lifetime: 30
 --- !u!1001 &3903766278298426793
 PrefabInstance:
   m_ObjectHideFlags: 0
