@@ -2,7 +2,6 @@
 
 public abstract class MiniGameBase : MonoBehaviour
 {
-    public float lifeTime = 30;
     public float warningPercentage;
     public Material warningMat;   
     public GameObject background;
@@ -45,7 +44,7 @@ public abstract class MiniGameBase : MonoBehaviour
     void Start()
     {
         requiredScore = checkBoxes.Length;
-        remainingTime = lifeTime;
+        remainingTime = GameManager.instance.currentStartTime;
         currentScore = 0;
         gameOver = false;
         MiniGameStart();
@@ -64,7 +63,7 @@ public abstract class MiniGameBase : MonoBehaviour
             }
         }
 
-        if (remainingTime <= lifeTime * warningPercentage)
+        if (remainingTime <= GameManager.instance.currentStartTime * warningPercentage)
         {
             background.GetComponent<MeshRenderer>().material = warningMat;
         }

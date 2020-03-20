@@ -35,7 +35,12 @@ public class GameManager : MonoBehaviour
     private bool isPaused = false;
     public static GameManager instance = null;
     public int numberOfSpots = 3;
+    public float initialMiniGameTime = 30;
+    public float nextTimePercent;
     public float startSpawnDelay;
+    [HideInInspector]
+    public float currentStartTime;
+
     public GameObject[] miniGamePrefabs;
     public TextMesh scoreText;
     public GameObject pauseMenu;
@@ -66,6 +71,7 @@ public class GameManager : MonoBehaviour
             SpawnGame(i);
         }
 
+        currentStartTime = initialMiniGameTime;
         score = 0;
         scoreText.text = "Score: " + score;
         IsPaused = false;
@@ -110,6 +116,7 @@ public class GameManager : MonoBehaviour
         {
             score++;
             scoreText.text = "Score: " + score;
+            currentStartTime *= nextTimePercent;
         }
 
         for (int i = 0; i < numberOfSpots; i++) {
@@ -122,7 +129,7 @@ public class GameManager : MonoBehaviour
                     InputManager.instance.SelectedMiniGameIndex = i;
                 }
             }
-        }       
+        }
     }
 
     public void GameOver()
