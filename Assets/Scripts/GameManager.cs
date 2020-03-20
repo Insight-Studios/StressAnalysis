@@ -66,13 +66,14 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         miniGames = new MiniGameBase[numberOfSpots];
-
+        
         StartCoroutine(SpawnAllGames());
 
         currentStartTime = initialMiniGameTime;
         score = 0;
         scoreText.text = "Score: " + score;
-        IsPaused = false;
+        pauseMenu.SetActive(false);
+        isPaused = false;
     }
 
     IEnumerator SpawnAllGames()
