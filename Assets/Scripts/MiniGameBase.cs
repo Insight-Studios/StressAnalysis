@@ -9,6 +9,20 @@ public abstract class MiniGameBase : MonoBehaviour
     public TextMesh timerText;
     [HideInInspector]
     public int requiredScore;
+    public float RemainingTime 
+    {
+        get
+        {
+            return remainingTime;
+        }
+        set
+        {
+            remainingTime = remainingTime/lifetime * value;
+            lifetime = value;
+        }
+    }
+    public float lifetime = 30;
+
 
     private bool gameOver;
     private float remainingTime;
@@ -44,7 +58,7 @@ public abstract class MiniGameBase : MonoBehaviour
     void Start()
     {
         requiredScore = checkBoxes.Length;
-        remainingTime = GameManager.instance.currentStartTime;
+        remainingTime = lifetime;
         currentScore = 0;
         gameOver = false;
         MiniGameStart();
@@ -63,7 +77,7 @@ public abstract class MiniGameBase : MonoBehaviour
             }
         }
 
-        if (remainingTime <= GameManager.instance.currentStartTime * warningPercentage)
+        if (remainingTime <= lifetime * warningPercentage)
         {
             background.GetComponent<MeshRenderer>().material = warningMat;
         }

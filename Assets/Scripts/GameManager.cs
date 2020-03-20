@@ -39,13 +39,13 @@ public class GameManager : MonoBehaviour
     public float nextTimePercent;
     public float startSpawnDelay;
     [HideInInspector]
-    public float currentStartTime;
 
     public GameObject[] miniGamePrefabs;
     public TextMesh scoreText;
     public GameObject pauseMenu;
 
-    private int score;
+    int gamesCompleted;
+    int score;
 
     [HideInInspector]
     public MiniGameBase[] miniGames;
@@ -69,11 +69,11 @@ public class GameManager : MonoBehaviour
         
         StartCoroutine(SpawnAllGames());
 
-        currentStartTime = initialMiniGameTime;
         score = 0;
-        scoreText.text = "Score: " + score;
         pauseMenu.SetActive(false);
         isPaused = false;
+        gamesCompleted = 0;
+        scoreText.text = "Score: " + gamesCompleted;
     }
 
     IEnumerator SpawnAllGames()
@@ -110,6 +110,7 @@ public class GameManager : MonoBehaviour
 
         }
         miniGames[location] = newMiniGame.GetComponent<MiniGameBase>();
+        miniGames[location].RemainingTime = initialMiniGameTime * Mathf.Pow(nextTimePercent, gamesCompleted);
         InputManager.instance.RegisterGameObject(miniGames[location].gameObject);
     }
 
@@ -122,19 +123,18 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            score++;
-            scoreText.text = "Score: " + score;
-            currentStartTime *= nextTimePercent;
-        }
-
-        for (int i = 0; i < numberOfSpots; i++) {
-            if (!miniGames[i].enabled) {
-                InputManager.instance.UnRegisterGameObject(miniGames[i].gameObject);
-                Destroy(miniGames[i].gameObject);
-                SpawnGame(i);
-                if (i == InputManager.instance.SelectedMiniGameIndex)
-                {
-                    InputManager.instance.SelectedMiniGameIndex = i;
+            for (int i = 0; i < numberOfSpots; i++) {
+                if (!miniGames[i].enabled) {
+                    gamesCompleted++;
+                    score += Mathf.RoundToInt(100 / Mathf.Pow(nextTimePercent, gamesCompleted) + miniGames[i].RemainingTime);
+                    scoreText.text = "Score: " + score;
+                    InputManager.instance.UnRegisterGameObject(miniGames[i].gameObject);
+                    Destroy(miniGames[i].gameObject);
+                    SpawnGame(i);
+                    if (i == InputManager.instance.SelectedMiniGameIndex)
+                    {
+                        InputManager.instance.SelectedMiniGameIndex = i;
+                    }
                 }
             }
         }
