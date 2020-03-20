@@ -45,7 +45,8 @@ public class GameManager : MonoBehaviour
     public TextMesh scoreText;
     public GameObject pauseMenu;
 
-    private int score;
+    int gamesCompleted;
+    int score;
 
     [HideInInspector]
     public MiniGameBase[] miniGames;
@@ -70,8 +71,8 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SpawnAllGames());
 
         currentStartTime = initialMiniGameTime;
-        score = 0;
-        scoreText.text = "Score: " + score;
+        gamesCompleted = 0;
+        scoreText.text = "Score: " + gamesCompleted;
         IsPaused = false;
     }
 
@@ -121,7 +122,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            score++;
+            gamesCompleted++;
+            score += Mathf.RoundToInt(100 / Mathf.Pow(nextTimePercent, gamesCompleted));
             scoreText.text = "Score: " + score;
             currentStartTime *= nextTimePercent;
         }

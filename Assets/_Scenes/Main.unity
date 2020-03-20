@@ -167,7 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfSpots: 3
   initialMiniGameTime: 45
-  nextTimePercent: 0.8
+  nextTimePercent: 0.95
   startSpawnDelay: 0
   currentStartTime: 0
   miniGamePrefabs:
