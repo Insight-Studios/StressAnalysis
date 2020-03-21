@@ -34,7 +34,7 @@ public class InputManager : MonoBehaviour
             
             selectedMiniGame = value;
             selectedMiniGameIcon.SetActive(true);
-            selectedMiniGameIcon.transform.Translate(selectedMiniGame.transform.position.x - selectedMiniGameIcon.transform.position.x, selectedMiniGame.transform.position.y - selectedMiniGameIcon.transform.position.y, 0);
+            selectedMiniGameIcon.transform.position = (Vector3) GameManager.instance.miniGamePositions[selectedMiniGameIndex] - Vector3.back;
         }
     }
     MiniGameBase selectedMiniGame;
@@ -53,7 +53,7 @@ public class InputManager : MonoBehaviour
             selectedMiniGameIndex = value;
             selectedMiniGame = GameManager.instance.miniGames[value];
             selectedMiniGameIcon.SetActive(true);
-            selectedMiniGameIcon.transform.Translate(selectedMiniGame.transform.position.x - selectedMiniGameIcon.transform.position.x, selectedMiniGame.transform.position.y - selectedMiniGameIcon.transform.position.y, 0);
+            selectedMiniGameIcon.transform.position = (Vector3) GameManager.instance.miniGamePositions[value] - Vector3.back;
         }
     }
     int selectedMiniGameIndex;

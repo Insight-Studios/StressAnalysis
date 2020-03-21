@@ -79,7 +79,7 @@ public abstract class MiniGameBase : MonoBehaviour
 
         if (remainingTime <= lifetime * warningPercentage)
         {
-            background.GetComponent<MeshRenderer>().material = warningMat;
+            background.GetComponent<SpriteRenderer>().color = Color.red;
         }
     }
 

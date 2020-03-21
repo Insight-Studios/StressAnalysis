@@ -33,8 +33,10 @@ public class GameManager : MonoBehaviour
         }
     }
     private bool isPaused = false;
+
     public static GameManager instance = null;
-    public int numberOfSpots = 3;
+    
+    public Vector2[] miniGamePositions;
     public float initialMiniGameTime = 30;
     public float nextTimePercent;
     public float startSpawnDelay;
@@ -44,8 +46,9 @@ public class GameManager : MonoBehaviour
     public TextMesh scoreText;
     public GameObject pauseMenu;
 
-    int gamesCompleted;
-    int score;
+    private int numberOfSpots;
+    private int gamesCompleted;
+    private int score;
 
     [HideInInspector]
     public MiniGameBase[] miniGames;
@@ -65,6 +68,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        numberOfSpots = miniGamePositions.Length;
         miniGames = new MiniGameBase[numberOfSpots];
         
         StartCoroutine(SpawnAllGames());
@@ -89,26 +93,7 @@ public class GameManager : MonoBehaviour
     {
         GameObject newMiniGame;
 
-        switch (location)
-        {
-            case 0:
-                newMiniGame = Instantiate(miniGamePrefabs[Random.Range(0, miniGamePrefabs.Length)], new Vector3(transform.position.x - 6, transform.position.y, transform.position.z), transform.rotation);
-                break;
-
-            case 1:
-                newMiniGame = Instantiate(miniGamePrefabs[Random.Range(0, miniGamePrefabs.Length)], new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation);
-                break;
-
-            case 2:
-                newMiniGame = Instantiate(miniGamePrefabs[Random.Range(0, miniGamePrefabs.Length)], new Vector3(transform.position.x + 6, transform.position.y, transform.position.z), transform.rotation);
-                break;
-
-            default:
-                Debug.LogError("Not Valid Spawning Location");
-                newMiniGame = null;
-                return;
-
-        }
+        newMiniGame = Instantiate(miniGamePrefabs[Random.Range(0, miniGamePrefabs.Length)], (Vector3) miniGamePositions[location], transform.rotation);
         miniGames[location] = newMiniGame.GetComponent<MiniGameBase>();
         miniGames[location].RemainingTime = initialMiniGameTime * Mathf.Pow(nextTimePercent, gamesCompleted);
         InputManager.instance.RegisterGameObject(miniGames[location].gameObject);

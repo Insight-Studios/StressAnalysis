@@ -165,11 +165,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57e12d5cbe69921468622261eae0ccd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfSpots: 3
+  miniGamePositions:
+  - {x: -6, y: 0.5}
+  - {x: 0, y: -1}
+  - {x: 6, y: 0.5}
   initialMiniGameTime: 45
   nextTimePercent: 0.95
-  startSpawnDelay: 0.5
-  currentStartTime: 0
+  startSpawnDelay: 1
   miniGamePrefabs:
   - {fileID: 1834132632805422, guid: ea359e9189165bc45badd415baa00f7e, type: 3}
   - {fileID: 1834132632805422, guid: d29a6a2d4073c384fb5ca793788fb880, type: 3}
