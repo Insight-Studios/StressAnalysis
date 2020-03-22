@@ -72,7 +72,7 @@ MonoBehaviour:
   - {fileID: 7316917488531942294}
   - {fileID: 7316917486856305094}
   - {fileID: 7316917488274893261}
-  timerText: {fileID: 1151621416082882578}
+  timerAnimator: {fileID: 4554044179560501601}
   requiredScore: 5
   lifetime: 30
   thisNumber: -1
@@ -1178,12 +1178,12 @@ PrefabInstance:
     - target: {fileID: 3751245154117770822, guid: fcb3545ac1e13e54b83482e8507706d6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.25
+      value: -2.475
       objectReference: {fileID: 0}
     - target: {fileID: 3751245154117770822, guid: fcb3545ac1e13e54b83482e8507706d6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.4
+      value: 2.475
       objectReference: {fileID: 0}
     - target: {fileID: 3751245154117770822, guid: fcb3545ac1e13e54b83482e8507706d6,
         type: 3}
@@ -1243,9 +1243,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4217913417643239540}
   m_PrefabAsset: {fileID: 0}
---- !u!102 &1151621416082882578 stripped
-TextMesh:
-  m_CorrespondingSourceObject: {fileID: 3851255480569620582, guid: fcb3545ac1e13e54b83482e8507706d6,
+--- !u!95 &4554044179560501601 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 412711492376934677, guid: fcb3545ac1e13e54b83482e8507706d6,
     type: 3}
   m_PrefabInstance: {fileID: 4217913417643239540}
   m_PrefabAsset: {fileID: 0}

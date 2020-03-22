@@ -6,7 +6,7 @@ public abstract class MiniGameBase : MonoBehaviour
     public Material warningMat;   
     public GameObject background;
     public GameObject[] checkBoxes;
-    public TextMesh timerText;
+    public Animator timerAnimator;
     [HideInInspector]
     public int requiredScore;
     public float RemainingTime 
@@ -19,6 +19,7 @@ public abstract class MiniGameBase : MonoBehaviour
         {
             remainingTime = remainingTime/lifetime * value;
             lifetime = value;
+            timerAnimator.speed = 1/value;
         }
     }
     public float lifetime = 30;
@@ -69,10 +70,8 @@ public abstract class MiniGameBase : MonoBehaviour
         if (!gameOver) {
             remainingTime -= Time.deltaTime;
             if(remainingTime <= 0) {
-                timerText.text = 0.ToString();
                 OnEnd(true);
             } else {
-                timerText.text = Mathf.CeilToInt(remainingTime).ToString();
                 MiniGameUpdate();
             }
         }
