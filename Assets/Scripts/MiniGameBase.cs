@@ -56,6 +56,11 @@ public abstract class MiniGameBase : MonoBehaviour
         }
     }
 
+    void Awake()
+    {
+        timerAnimator.keepAnimatorControllerStateOnDisable = true;
+    }
+
     void Start()
     {
         requiredScore = checkBoxes.Length;

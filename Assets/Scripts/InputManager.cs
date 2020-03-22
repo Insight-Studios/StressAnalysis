@@ -69,7 +69,6 @@ public class InputManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
-            throw new System.Exception("Singleton instantiated twice.");
         }
     }
 

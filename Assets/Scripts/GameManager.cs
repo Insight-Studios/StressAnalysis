@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,11 +13,6 @@ public class GameManager : MonoBehaviour
 
         set
         {
-            foreach (MiniGameBase miniGame in miniGames)
-            {
-                miniGame.gameObject.SetActive(!value);
-            }
-
             if (value)
             {
                 InputManager.instance.selectedMiniGameIcon.SetActive(false);
@@ -30,6 +24,11 @@ public class GameManager : MonoBehaviour
 
             pauseMenu.SetActive(value);
             isPaused = value;
+            
+            foreach (MiniGameBase miniGame in miniGames)
+            {
+                if (miniGame != null) miniGame.gameObject.SetActive(!value);
+            }
         }
     }
     private bool isPaused = false;
@@ -48,10 +47,11 @@ public class GameManager : MonoBehaviour
 
     private int numberOfSpots;
     private int gamesCompleted;
-    private int score;
 
     [HideInInspector]
     public MiniGameBase[] miniGames;
+    [HideInInspector]
+    public int score;
 
     void Awake()
     {
@@ -59,14 +59,14 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
-        else 
+        else if (instance != this)
         {
+            instance.Start();
             Destroy(gameObject);
-            throw new System.Exception("Singleton instantiated twice.");
         }
     }
 
-    void Start()
+    public void Start()
     {
         numberOfSpots = miniGamePositions.Length;
         miniGames = new MiniGameBase[numberOfSpots];
@@ -84,11 +84,11 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < numberOfSpots; i++)
         {
+            yield return new WaitWhile(() => {return IsPaused;});
             SpawnGame(i);
             yield return new WaitForSeconds(startSpawnDelay);
         }
     }
-
     void SpawnGame(int location) //0 left, 1 middle, 2 right
     {
         GameObject newMiniGame;
@@ -97,6 +97,7 @@ public class GameManager : MonoBehaviour
         miniGames[location] = newMiniGame.GetComponent<MiniGameBase>();
         miniGames[location].RemainingTime = initialMiniGameTime * Mathf.Pow(nextTimePercent, gamesCompleted);
         InputManager.instance.RegisterGameObject(miniGames[location].gameObject);
+        miniGames[location].gameObject.SetActive(!IsPaused);
     }
 
     public void CompletedMiniGame(bool gameOver)
@@ -111,7 +112,7 @@ public class GameManager : MonoBehaviour
             for (int i = 0; i < numberOfSpots; i++) {
                 if (!miniGames[i].enabled) {
                     gamesCompleted++;
-                    score += Mathf.RoundToInt(100 / Mathf.Pow(nextTimePercent, gamesCompleted) + miniGames[i].RemainingTime);
+                    score += Mathf.RoundToInt(100*miniGames[i].RemainingTime/miniGames[i].lifetime*gamesCompleted);
                     scoreText.text = "Score: " + score;
                     InputManager.instance.UnRegisterGameObject(miniGames[i].gameObject);
                     Destroy(miniGames[i].gameObject);
@@ -134,12 +135,7 @@ public class GameManager : MonoBehaviour
             Destroy(miniGame.gameObject);
         }
 
-        SceneManager.LoadScene(2);
-
-        DontDestroyOnLoad(scoreText);
-        scoreText.GetComponent<TextMesh>().color = Color.white;
-        scoreText.GetComponent<TextMesh>().fontSize = 100;
-        scoreText.GetComponent<TextMesh>().text += "!"; 
+        ScenesManager.instance.GameOver();
     }
 
     public void UnPause()
@@ -161,11 +157,5 @@ public class GameManager : MonoBehaviour
         }
 
         Start();
-    }
-
-    public void Exit()
-    {
-        GameManager.instance = null;
-        SceneManager.LoadScene(0);
     }
 }
