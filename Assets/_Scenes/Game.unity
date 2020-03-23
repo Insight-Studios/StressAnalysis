@@ -173,10 +173,10 @@ MonoBehaviour:
   startSpawnDelay: 3
   miniGamePrefabs:
   - {fileID: 1834132632805422, guid: f93fc075b07432248be54fb6fa7d70aa, type: 3}
-  - {fileID: 1834132632805422, guid: f93fc075b07432248be54fb6fa7d70aa, type: 3}
-  - {fileID: 1834132632805422, guid: f93fc075b07432248be54fb6fa7d70aa, type: 3}
-  - {fileID: 1834132632805422, guid: f93fc075b07432248be54fb6fa7d70aa, type: 3}
-  - {fileID: 1834132632805422, guid: f93fc075b07432248be54fb6fa7d70aa, type: 3}
+  - {fileID: 1834132632805422, guid: ea359e9189165bc45badd415baa00f7e, type: 3}
+  - {fileID: 1834132632805422, guid: ad9e779aebbc37f428820b68a7df48c4, type: 3}
+  - {fileID: 1834132632805422, guid: d29a6a2d4073c384fb5ca793788fb880, type: 3}
+  - {fileID: 1834132632805422, guid: 273c948e1a3ac2d4ab0cc78cc4050ede, type: 3}
   scoreText: {fileID: 1273276926}
   pauseMenu: {fileID: 609605278}
   miniGames: []
