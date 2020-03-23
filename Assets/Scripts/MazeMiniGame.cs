@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class MazeMiniGame : MiniGameBase
 {
-    public SpriteRenderer mazeRenderer;
+    [SerializeField]
+    private SpriteRenderer mazeRenderer;
+    [SerializeField]
+    private SpriteRenderer[] trailRenderers;
 
     private int current;
     private int[] turtle;
     private int[] target;
+    private bool[,] trailGrid;
 
     public override void MiniGameStart()
     {
         current = Random.Range(0, grids.GetLength(0));
+
+        trailGrid = new bool[,]
+        {
+            {true, false, true, false, true},
+            {false, false, false, false, false},
+            {true, false, true, false, true},
+            {false, false, false, false, false},
+            {true, false, true, false, true},
+        };
 
         mazeRenderer.sprite = mazes[current];
         turtle = new int[] {Mathf.RoundToInt(spawnLocations[current].x), Mathf.RoundToInt(spawnLocations[current].y)};
@@ -26,41 +39,56 @@ public class MazeMiniGame : MiniGameBase
             case KeyCode.DownArrow:
                 if (turtle[1] + 2 < 5 && grids[current, turtle[1] + 1, turtle[0]])
                 {
+                    trailGrid[turtle[1] + 1, turtle[0]] = !trailGrid[turtle[1] + 1, turtle[0]];
+                    UpdateTrailGrid();
                     turtle[1] += 2;
                 }
                 break;
             case KeyCode.UpArrow:
                 if (turtle[1] - 2 >= 0 && grids[current, turtle[1] - 1, turtle[0]])
                 {
+                    trailGrid[turtle[1] - 1, turtle[0]] = !trailGrid[turtle[1] - 1, turtle[0]];
+                    UpdateTrailGrid();
                     turtle[1] -= 2;
                 }
                 break;
             case KeyCode.RightArrow:
                 if (turtle[0] + 2 < 5 && grids[current, turtle[1], turtle[0] + 1])
                 {
+                    trailGrid[turtle[1], turtle[0] + 1] = !trailGrid[turtle[1], turtle[0] + 1];
+                    UpdateTrailGrid();
                     turtle[0] += 2;
                 }
                 break;
             case KeyCode.LeftArrow:
                 if (turtle[0] - 2 >= 0 && grids[current, turtle[1], turtle[0] - 1])
                 {
+                    trailGrid[turtle[1], turtle[0] - 1] = !trailGrid[turtle[1], turtle[0] - 1];
+                    UpdateTrailGrid();
                     turtle[0] -= 2;
                 }
                 break;
         }
+        print (trailGrid.ToString());
     }
 
     protected override void MiniGameUpdate()
-    {
-        print(turtle[0] + "," + turtle[1] + "<- turtle target ->" + target[0] + "," + target[1]);
+    {  
         if (turtle[0] == target[0] && turtle[1] == target[1])
         {
-            print("hello world");
             Score++;
-            print(Score);
         }
     }
 
+    private void UpdateTrailGrid()
+    {
+        int intersection = 0;
+        for (int i = 1; i < trailGrid.Length; i+=2)
+        {
+            trailRenderers[intersection].gameObject.SetActive(trailGrid[Mathf.FloorToInt(i/trailGrid.GetLength(0)), i % trailGrid.GetLength(0)]);
+            intersection++;
+        }
+    }
     
     [SerializeField]
     private Sprite[] mazes;
