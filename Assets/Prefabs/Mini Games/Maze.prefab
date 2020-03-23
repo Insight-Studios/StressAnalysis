@@ -31,6 +31,7 @@ Transform:
   - {fileID: 4058894540537401600}
   - {fileID: 8933512461591522084}
   - {fileID: 2262969556479842531}
+  - {fileID: 190835113864952357}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -53,8 +54,142 @@ MonoBehaviour:
   timerAnimator: {fileID: 711903446596351571}
   requiredScore: 0
   lifetime: 30
-  spawnLocation: {x: 0, y: 4}
-  finishLocation: {x: 4, y: 0}
+  mazeRenderer: {fileID: 1730069730622873276}
+  mazes:
+  - {fileID: 21300000, guid: 7e4198c4dbc2b474d9ea80468bd8e766, type: 3}
+  - {fileID: 21300000, guid: b63b9f94a94b5a3458560821ec4f133c, type: 3}
+  - {fileID: 21300000, guid: 76ab5bbf04dbcf54da3adfe33aed60e4, type: 3}
+  - {fileID: 21300000, guid: e391b70ea9ab6cc449e0c84ff81f0714, type: 3}
+  - {fileID: 21300000, guid: 53493647490ced94c9619acac2df8464, type: 3}
+  - {fileID: 21300000, guid: b9b14df8aafd5334e8e8430132a95650, type: 3}
+  - {fileID: 21300000, guid: 8cb30c70db3c23c46b026ca99e1d706a, type: 3}
+  - {fileID: 21300000, guid: 33e2437c8b3b02243bea6a7e9eb21fb0, type: 3}
+  - {fileID: 21300000, guid: a2f0de6c663882d4faec021b46921254, type: 3}
+  - {fileID: 21300000, guid: ebd487d8278932f4289fdcddd07720e3, type: 3}
+  - {fileID: 21300000, guid: d8366864dcb71f642b0cf2e1e6c550ff, type: 3}
+  - {fileID: 21300000, guid: fb84fa5298d58f547bda44600bfd9f89, type: 3}
+  - {fileID: 21300000, guid: 49adbe901ca9d2b4b81f6565978f11e9, type: 3}
+  - {fileID: 21300000, guid: e7fb5cf4a2676644b85b1a2665edb359, type: 3}
+  - {fileID: 21300000, guid: 37eceabb00c39f6449372cbdf9915413, type: 3}
+  - {fileID: 21300000, guid: bb5b51841b77f5649912646d335f7776, type: 3}
+  - {fileID: 21300000, guid: 7d1cc8512f8669f41a79e97a32cead7c, type: 3}
+  spawnLocations:
+  - {x: 0, y: 4}
+  - {x: 0, y: 4}
+  - {x: 0, y: 4}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 2}
+  - {x: 0, y: 2}
+  - {x: 0, y: 2}
+  - {x: 0, y: 2}
+  - {x: 0, y: 2}
+  finishLocations:
+  - {x: 4, y: 0}
+  - {x: 4, y: 0}
+  - {x: 4, y: 0}
+  - {x: 4, y: 0}
+  - {x: 4, y: 0}
+  - {x: 4, y: 0}
+  - {x: 4, y: 0}
+  - {x: 4, y: 0}
+  - {x: 4, y: 0}
+  - {x: 4, y: 0}
+  - {x: 4, y: 0}
+  - {x: 4, y: 0}
+  - {x: 4, y: 0}
+  - {x: 4, y: 0}
+  - {x: 4, y: 0}
+  - {x: 4, y: 2}
+  - {x: 4, y: 2}
+--- !u!1 &1251339451235748358
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 190835113864952357}
+  - component: {fileID: 1730069730622873276}
+  m_Layer: 0
+  m_Name: Maze
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &190835113864952357
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251339451235748358}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4216413002807734}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1730069730622873276
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251339451235748358}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 7e4198c4dbc2b474d9ea80468bd8e766, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 5.12, y: 5.12}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &8186361009953056897
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,12 +376,12 @@ PrefabInstance:
     - target: {fileID: 6039802538343912381, guid: 474c52a0c17fa064d93dfb62dc5664fc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.1782838
+      value: -1.34
       objectReference: {fileID: 0}
     - target: {fileID: 6039802538343912381, guid: 474c52a0c17fa064d93dfb62dc5664fc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.0690644
+      value: 2.25
       objectReference: {fileID: 0}
     - target: {fileID: 6039802538343912381, guid: 474c52a0c17fa064d93dfb62dc5664fc,
         type: 3}
