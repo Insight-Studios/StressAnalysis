@@ -172,9 +172,10 @@ MonoBehaviour:
   nextTimePercent: 0.95
   startSpawnDelay: 3
   miniGamePrefabs:
-  - {fileID: 1834132632805422, guid: ea359e9189165bc45badd415baa00f7e, type: 3}
-  - {fileID: 1834132632805422, guid: d29a6a2d4073c384fb5ca793788fb880, type: 3}
-  - {fileID: 1834132632805422, guid: 273c948e1a3ac2d4ab0cc78cc4050ede, type: 3}
+  - {fileID: 1834132632805422, guid: ad9e779aebbc37f428820b68a7df48c4, type: 3}
+  - {fileID: 1834132632805422, guid: ad9e779aebbc37f428820b68a7df48c4, type: 3}
+  - {fileID: 1834132632805422, guid: ad9e779aebbc37f428820b68a7df48c4, type: 3}
+  - {fileID: 1834132632805422, guid: ad9e779aebbc37f428820b68a7df48c4, type: 3}
   scoreText: {fileID: 1273276926}
   pauseMenu: {fileID: 609605278}
   miniGames: []
@@ -579,6 +580,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 896016615}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &954413952
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 189147487729013639, guid: f8360d6e68a04324590af06a2be65885,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 189147487729013639, guid: f8360d6e68a04324590af06a2be65885,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 189147487729013639, guid: f8360d6e68a04324590af06a2be65885,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 189147487729013639, guid: f8360d6e68a04324590af06a2be65885,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 189147487729013642, guid: f8360d6e68a04324590af06a2be65885,
+        type: 3}
+      propertyPath: m_Name
+      value: Statics
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f8360d6e68a04324590af06a2be65885, type: 3}
 --- !u!1 &1075642484
 GameObject:
   m_ObjectHideFlags: 0

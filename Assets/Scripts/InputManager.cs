@@ -120,7 +120,7 @@ public class InputManager : MonoBehaviour
                 case KeyCode.D:
                     SelectedMiniGameIndex = 2;
                     break;
-                    case KeyCode.Escape:
+                case KeyCode.Escape:
                     GameManager.instance.IsPaused = true;
                     break;
                 default:
