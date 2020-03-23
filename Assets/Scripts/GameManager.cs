@@ -39,8 +39,6 @@ public class GameManager : MonoBehaviour
     public float initialMiniGameTime = 30;
     public float nextTimePercent;
     public float startSpawnDelay;
-    [HideInInspector]
-
     public GameObject[] miniGamePrefabs;
     public TextMesh scoreText;
     public GameObject pauseMenu;

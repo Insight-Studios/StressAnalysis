@@ -27,6 +27,7 @@ public class ScenesManager : MonoBehaviour
     public void MainMenu()
     {
         GameManager.instance = null;
+        scoreText.text = "Score: ";
         SceneManager.LoadScene(MAIN_MENU);
     }
 
