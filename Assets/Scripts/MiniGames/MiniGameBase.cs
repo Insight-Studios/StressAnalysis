@@ -2,17 +2,14 @@
 
 public abstract class MiniGameBase : MonoBehaviour
 {
-    public float warningPercentage;
-    public GameObject background;
-    public GameObject[] checkBoxes;
-    public Animator timerAnimator;
-    [HideInInspector]
-    public int requiredScore;
-    public float RemainingTime 
-    {
-        get
-        {
-            return remainingTime;
+    [SerializeField] private float warningPercentage = 0.2f;
+    [SerializeField] private GameObject background;
+    [SerializeField] private GameObject[] checkBoxes;
+    [SerializeField] private Animator timerAnimator;
+    [SerializeField] private float lifetime = 30;
+    public float Lifetime {
+        get {
+            return lifetime;
         }
         set
         {
@@ -21,14 +18,15 @@ public abstract class MiniGameBase : MonoBehaviour
             timerAnimator.speed = 1/value;
         }
     }
-    public float lifetime = 30;
 
+    protected int requiredScore;
 
     private bool gameOver;
     private float remainingTime;
     private int currentScore;
 
-    public bool GameOver {get {return gameOver;}}
+    public bool GameOver { get { return gameOver; } }
+    public float RemainingTime { get { return remainingTime; } }
 
     public int Score {
         get {
@@ -47,6 +45,7 @@ public abstract class MiniGameBase : MonoBehaviour
             {
                 checkBoxes[value - 1].GetComponent<CheckBox>().ActivateCheck();
             }
+
             if (value == -1)
                 OnEnd(true);
             else if(currentScore >= requiredScore) {
@@ -86,21 +85,25 @@ public abstract class MiniGameBase : MonoBehaviour
         }
     }
 
-    private void OnEnd(bool timedOut)
+    private void OnEnd(bool failed)
     {
-        if(timedOut) {
+        if(failed) {
             gameOver = true;
             OnGameOver();
         } else {
             OnComplete();
         }
+
         enabled = false;
-        GameManager.instance.CompletedMiniGame(timedOut);
+        GameManager.instance.CompletedMiniGame(failed);
+        MiniGameEnd();
     }
     
-    public abstract void MiniGameStart();
+    protected abstract void MiniGameStart();
 
     protected virtual void MiniGameUpdate() {}
+
+    protected virtual void MiniGameEnd() {}
 
     protected virtual void SendNumber(int number) {}
 

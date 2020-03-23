@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TestMiniGame : MiniGameBase
 {
-    public override void MiniGameStart()
+    protected override void MiniGameStart()
     {
         Debug.Log("Initialized TestMiniGame");
     }

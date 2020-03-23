@@ -10,6 +10,7 @@ public class ScenesManager : MonoBehaviour
     private static int MAIN_MENU = 0, GAME = 1, GAMEOVER = 2;
 
     public TextMesh scoreText;
+    public Rigidbody2D nailPhysics;
 
     void Awake()
     {

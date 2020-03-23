@@ -172,10 +172,11 @@ MonoBehaviour:
   nextTimePercent: 0.95
   startSpawnDelay: 3
   miniGamePrefabs:
-  - {fileID: 1834132632805422, guid: ea359e9189165bc45badd415baa00f7e, type: 3}
-  - {fileID: 1834132632805422, guid: ad9e779aebbc37f428820b68a7df48c4, type: 3}
-  - {fileID: 1834132632805422, guid: d29a6a2d4073c384fb5ca793788fb880, type: 3}
-  - {fileID: 1834132632805422, guid: 273c948e1a3ac2d4ab0cc78cc4050ede, type: 3}
+  - {fileID: 1834132632805422, guid: f93fc075b07432248be54fb6fa7d70aa, type: 3}
+  - {fileID: 1834132632805422, guid: f93fc075b07432248be54fb6fa7d70aa, type: 3}
+  - {fileID: 1834132632805422, guid: f93fc075b07432248be54fb6fa7d70aa, type: 3}
+  - {fileID: 1834132632805422, guid: f93fc075b07432248be54fb6fa7d70aa, type: 3}
+  - {fileID: 1834132632805422, guid: f93fc075b07432248be54fb6fa7d70aa, type: 3}
   scoreText: {fileID: 1273276926}
   pauseMenu: {fileID: 609605278}
   miniGames: []
@@ -590,7 +591,7 @@ PrefabInstance:
     - target: {fileID: 189147487729013639, guid: f8360d6e68a04324590af06a2be65885,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 189147487729013639, guid: f8360d6e68a04324590af06a2be65885,
         type: 3}
@@ -1311,7 +1312,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1971818533
 GameObject:

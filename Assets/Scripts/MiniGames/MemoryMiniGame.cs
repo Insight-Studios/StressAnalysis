@@ -34,7 +34,7 @@ public class MemoryMiniGame : MiniGameBase
         }
     }
 
-    public override void MiniGameStart()
+    protected override void MiniGameStart()
     {
         sequence = new int[requiredScore];
 

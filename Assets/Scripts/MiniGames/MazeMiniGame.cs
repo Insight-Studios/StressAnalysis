@@ -14,7 +14,7 @@ public class MazeMiniGame : MiniGameBase
     private int[] target;
     private bool[,] trailGrid;
 
-    public override void MiniGameStart()
+    protected override void MiniGameStart()
     {
         current = Random.Range(0, grids.GetLength(0));
 

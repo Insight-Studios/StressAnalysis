@@ -12,7 +12,7 @@ public class MathMiniGame : MiniGameBase
     private int[] numbers;
     private int missing;
 
-    public override void MiniGameStart()
+    protected override void MiniGameStart()
     {
         numbers = new int[3];
         numberTexts = new TextMesh[] {upperNumberText, lowerNumberText, solutionText};

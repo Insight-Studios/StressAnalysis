@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
 
         newMiniGame = Instantiate(miniGamePrefabs[Random.Range(0, miniGamePrefabs.Length)], (Vector3) miniGamePositions[location], transform.rotation);
         miniGames[location] = newMiniGame.GetComponent<MiniGameBase>();
-        miniGames[location].RemainingTime = initialMiniGameTime * Mathf.Pow(nextTimePercent, gamesCompleted);
+        miniGames[location].Lifetime = initialMiniGameTime * Mathf.Pow(nextTimePercent, gamesCompleted);
         InputManager.instance.RegisterGameObject(miniGames[location].gameObject);
         miniGames[location].gameObject.SetActive(!IsPaused);
     }
@@ -110,7 +110,7 @@ public class GameManager : MonoBehaviour
             for (int i = 0; i < numberOfSpots; i++) {
                 if (!miniGames[i].enabled) {
                     gamesCompleted++;
-                    score += Mathf.RoundToInt(100*miniGames[i].RemainingTime/miniGames[i].lifetime*gamesCompleted);
+                    score += Mathf.RoundToInt(100*(miniGames[i].RemainingTime/miniGames[i].Lifetime)*gamesCompleted);
                     scoreText.text = "Score: " + score;
                     InputManager.instance.UnRegisterGameObject(miniGames[i].gameObject);
                     Destroy(miniGames[i].gameObject);

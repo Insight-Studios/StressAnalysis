@@ -8,7 +8,7 @@ public class NumberClickMiniGame : MiniGameBase
 
     public TextMesh displayNum;
 
-    public override void MiniGameStart()
+    protected override void MiniGameStart()
     {
         if (thisNumber == -1) {
             thisNumber = Random.Range(1, 10);
