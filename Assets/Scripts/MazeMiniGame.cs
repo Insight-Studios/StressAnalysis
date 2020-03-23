@@ -30,6 +30,8 @@ public class MazeMiniGame : MiniGameBase
         mazeRenderer.sprite = mazes[current];
         turtle = new int[] {Mathf.RoundToInt(spawnLocations[current].x), Mathf.RoundToInt(spawnLocations[current].y)};
         target = new int[] {Mathf.RoundToInt(finishLocations[current].x), Mathf.RoundToInt(finishLocations[current].y)};
+
+        UpdateTrailGrid();
     }
 
     public override void SendInput(KeyCode key)
@@ -77,6 +79,12 @@ public class MazeMiniGame : MiniGameBase
         if (turtle[0] == target[0] && turtle[1] == target[1])
         {
             Score++;
+            int lastCurrent = current;
+            MiniGameStart();
+            for (int i = 0; current == lastCurrent && i < 1000; i++)
+            {
+                current = Random.Range(0, grids.GetLength(0));
+            }
         }
     }
 
