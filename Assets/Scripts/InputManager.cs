@@ -111,15 +111,16 @@ public class InputManager : MonoBehaviour
             //MiniGame Selection Inputs
             if (!GameManager.instance.IsPaused) switch (e.keyCode)
             {
-                case KeyCode.LeftArrow:
                 case KeyCode.A:
-                    SelectedMiniGameIndex -= 1;
+                    SelectedMiniGameIndex = 0;
                     break;
-                case KeyCode.RightArrow:
+                case KeyCode.S:
+                    SelectedMiniGameIndex = 1;
+                    break;
                 case KeyCode.D:
-                    SelectedMiniGameIndex += 1;
+                    SelectedMiniGameIndex = 2;
                     break;
-                case KeyCode.Escape:
+                    case KeyCode.Escape:
                     GameManager.instance.IsPaused = true;
                     break;
                 default:
