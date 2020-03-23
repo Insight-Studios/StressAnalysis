@@ -3,7 +3,6 @@
 public abstract class MiniGameBase : MonoBehaviour
 {
     public float warningPercentage;
-    public Material warningMat;   
     public GameObject background;
     public GameObject[] checkBoxes;
     public Animator timerAnimator;
@@ -103,7 +102,7 @@ public abstract class MiniGameBase : MonoBehaviour
 
     protected virtual void MiniGameUpdate() {}
 
-    protected abstract void SendNumber(int number);
+    protected virtual void SendNumber(int number) {}
 
     public virtual void SendInput(KeyCode key)
     {
@@ -152,7 +151,7 @@ public abstract class MiniGameBase : MonoBehaviour
         }
     }
 
-    protected abstract void OnGameOver();
+    protected virtual void OnGameOver() {}
 
-    protected abstract void OnComplete();
+    protected virtual void OnComplete() {}
 }
