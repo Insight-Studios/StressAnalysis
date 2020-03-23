@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class MemoryMiniGame : MiniGameBase
 {
-    public float blinkTime = 1;
+    public float blinkTime = 0.025f;
+    public float waitTime = 0.005f;
     public TextMesh[] numbers;
 
     private int pos = 0;
@@ -102,10 +103,10 @@ public class MemoryMiniGame : MiniGameBase
             Color original = numbers[num].color;
             numbers[num].color = Color.white;
 
-            yield return new WaitForSeconds(blinkTime);
+            yield return new WaitForSeconds(blinkTime*RemainingTime);
 
             numbers[num].color = original;
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(waitTime*RemainingTime);
         }
     }
 }

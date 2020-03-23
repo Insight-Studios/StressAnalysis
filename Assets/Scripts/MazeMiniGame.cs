@@ -80,10 +80,9 @@ public class MazeMiniGame : MiniGameBase
         {
             Score++;
             int lastCurrent = current;
-            MiniGameStart();
             for (int i = 0; current == lastCurrent && i < 1000; i++)
             {
-                current = Random.Range(0, grids.GetLength(0));
+                MiniGameStart();
             }
         }
     }

@@ -54,7 +54,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   warningPercentage: 0.2
-  warningMat: {fileID: 0}
   background: {fileID: 220586109344346375}
   checkBoxes:
   - {fileID: 4357266031129440006}
@@ -65,7 +64,8 @@ MonoBehaviour:
   timerAnimator: {fileID: 3577119662645345177}
   requiredScore: 5
   lifetime: 30
-  blinkTime: 0.5
+  blinkTime: 0.025
+  waitTime: 0.005
   numbers:
   - {fileID: 8386883962415746793}
   - {fileID: 8377664469648935873}
