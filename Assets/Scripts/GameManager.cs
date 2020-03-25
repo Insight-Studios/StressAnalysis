@@ -110,7 +110,7 @@ public class GameManager : MonoBehaviour
         else
         {
             for (int i = 0; i < numberOfSpots; i++) {
-                if (!miniGames[i].enabled) {
+                if (miniGames[i] != null && !miniGames[i].enabled) {
                     gamesCompleted++;
                     score += Mathf.RoundToInt(100*(miniGames[i].RemainingTime/miniGames[i].Lifetime)*gamesCompleted);
                     scoreText.text = "Score: " + score;
@@ -152,10 +152,14 @@ public class GameManager : MonoBehaviour
     {
         foreach (MiniGameBase miniGame in miniGames)
         {
-            InputManager.instance.UnRegisterGameObject(miniGame.gameObject);
-            Destroy(miniGame.gameObject);
+            if (miniGame != null)
+            {
+                InputManager.instance.UnRegisterGameObject(miniGame.gameObject);
+                Destroy(miniGame.gameObject);
+            }
         }
 
+        StopAllCoroutines();
         Start();
     }
 }
