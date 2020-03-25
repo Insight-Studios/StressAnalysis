@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class MemoryMiniGame : MiniGameBase
 {
-    public float blinkTime = 0.025f;
-    public float waitTime = 0.005f;
-    public TextMesh[] numbers;
+    [SerializeField] private float blinkProp = 0.025f;
+    [SerializeField] private float minBlinkTime = 0.1f;
+    [SerializeField] private float waitProp = 0.005f;
+    [SerializeField] private TextMesh[] numbers;
 
     private int pos = 0;
     private int[] sequence;
@@ -103,10 +104,10 @@ public class MemoryMiniGame : MiniGameBase
             Color original = numbers[num].color;
             numbers[num].color = Color.white;
 
-            yield return new WaitForSeconds(blinkTime*RemainingTime);
+            yield return new WaitForSeconds(Mathf.Max(blinkProp*RemainingTime, minBlinkTime));
 
             numbers[num].color = original;
-            yield return new WaitForSeconds(waitTime*RemainingTime);
+            yield return new WaitForSeconds(waitProp*RemainingTime);
         }
     }
 }

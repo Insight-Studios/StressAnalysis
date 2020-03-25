@@ -5,11 +5,12 @@ using UnityEngine;
 public class BucketMiniGame : MiniGameBase
 {
     
-    [SerializeField] private float spawnDelay = 0.05f;
+    [SerializeField] private float spawnDelayProp = 0.05f;
+    [SerializeField] private float minSpawnDelay = 1f;
     [SerializeField] private GameObject[] spawners;
     [SerializeField] private GameObject nailPrefab;
-    [SerializeField] Collider2D bucketCollider;
-    [SerializeField] Collider2D conveyorCollider;
+    [SerializeField] private Collider2D bucketCollider;
+    [SerializeField] private Collider2D conveyorCollider;
 
     private GameObject bucket;
     private int bucketIndex;
@@ -64,7 +65,7 @@ public class BucketMiniGame : MiniGameBase
         nailColliders.RemoveAll( (Collider2D collider) => { return toBeRemoved.Contains(collider); } );
 
         timeSinceSpawn += Time.deltaTime;
-        if (timeSinceSpawn >= spawnDelay*RemainingTime)
+        if (timeSinceSpawn >= Mathf.Max(spawnDelayProp*RemainingTime, minSpawnDelay))
         {
             GameObject newNail = Instantiate(nailPrefab, spawners[Random.Range(0, spawners.Length)].transform);
             nailColliders.Add(newNail.GetComponent<Collider2D>());

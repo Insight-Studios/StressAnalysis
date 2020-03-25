@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class MazeMiniGame : MiniGameBase
 {
-    [SerializeField]
-    private SpriteRenderer mazeRenderer;
-    [SerializeField]
-    private SpriteRenderer[] trailRenderers;
+    [SerializeField] private SpriteRenderer mazeRenderer;
+    [SerializeField] private SpriteRenderer[] trailRenderers;
 
     private int current;
     private int[] turtle;

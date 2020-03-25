@@ -36,20 +36,18 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
     
     public Vector2[] miniGamePositions;
-    public float initialMiniGameTime = 30;
-    public float nextTimePercent;
-    public float startSpawnDelay;
-    public GameObject[] miniGamePrefabs;
-    public TextMesh scoreText;
-    public GameObject pauseMenu;
+    [SerializeField] private float initialMiniGameTime = 30;
+    [SerializeField] private float nextTimePercent;
+    [SerializeField] private float startSpawnDelay;
+    [SerializeField] private GameObject[] miniGamePrefabs;
+    [SerializeField] private TextMesh scoreText;
+    [SerializeField] private GameObject pauseMenu;
 
     private int numberOfSpots;
     private int gamesCompleted;
 
-    [HideInInspector]
-    public MiniGameBase[] miniGames;
-    [HideInInspector]
-    public int score;
+    [HideInInspector] public MiniGameBase[] miniGames;
+    [HideInInspector] public int score;
 
     void Awake()
     {

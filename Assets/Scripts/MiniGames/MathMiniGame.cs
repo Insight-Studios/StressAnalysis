@@ -5,7 +5,7 @@ using UnityEngine;
 public class MathMiniGame : MiniGameBase
 {
 
-    public TextMesh upperNumberText, lowerNumberText, symbolText, solutionText;
+    [SerializeField] private TextMesh upperNumberText, lowerNumberText, symbolText, solutionText;
 
     private Operation currentOperation;
     private TextMesh[] numberTexts;

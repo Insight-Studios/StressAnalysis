@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class NumberClickMiniGame : MiniGameBase
 {
-    public int thisNumber = -1; 
+    private int thisNumber = -1; 
 
-    public TextMesh displayNum;
+    [SerializeField] private TextMesh displayNum;
 
     protected override void MiniGameStart()
     {
