@@ -169,10 +169,13 @@ MonoBehaviour:
   - {x: 0, y: -1}
   - {x: 6, y: 0.5}
   initialMiniGameTime: 45
+  redPercentage: 0.2
+  yellowPercentage: 0.5
   nextTimePercent: 0.95
   startSpawnDelay: 3
   miniGamePrefabs:
   - {fileID: 1834132632805422, guid: f93fc075b07432248be54fb6fa7d70aa, type: 3}
+  - {fileID: 1834132632805422, guid: d2740095ff43dd3448f27a1ca6845a27, type: 3}
   - {fileID: 1834132632805422, guid: ea359e9189165bc45badd415baa00f7e, type: 3}
   - {fileID: 1834132632805422, guid: ad9e779aebbc37f428820b68a7df48c4, type: 3}
   - {fileID: 1834132632805422, guid: d29a6a2d4073c384fb5ca793788fb880, type: 3}

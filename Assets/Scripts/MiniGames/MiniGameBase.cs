@@ -2,11 +2,11 @@
 
 public abstract class MiniGameBase : MonoBehaviour
 {
-    [SerializeField] private float warningPercentage = 0.2f;
+    [HideInInspector] public float redPercentage;
+    [HideInInspector] public float yellowPercentage;
     [SerializeField] private GameObject background;
     [SerializeField] private GameObject[] checkBoxes;
     [SerializeField] private Animator timerAnimator;
-    [SerializeField] private float lifetime = 30;
     public float Lifetime {
         get {
             return lifetime;
@@ -18,6 +18,7 @@ public abstract class MiniGameBase : MonoBehaviour
             timerAnimator.speed = 1/value;
         }
     }
+    private float lifetime;
 
     protected int requiredScore;
 
@@ -79,9 +80,16 @@ public abstract class MiniGameBase : MonoBehaviour
             }
         }
 
-        if (remainingTime <= lifetime * warningPercentage)
+        if (remainingTime <= lifetime * yellowPercentage)
         {
-            background.GetComponent<SpriteRenderer>().color = Color.red;
+            if (remainingTime <= lifetime * redPercentage)
+            {
+                background.GetComponent<SpriteRenderer>().color = Color.red;
+            }
+            else
+            {
+                background.GetComponent<SpriteRenderer>().color = Color.yellow;
+            }
         }
     }
 

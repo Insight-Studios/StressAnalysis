@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
     
     public Vector2[] miniGamePositions;
     [SerializeField] private float initialMiniGameTime = 30;
+    [SerializeField] private float redPercentage = 0.2f;
+    [SerializeField] private float yellowPercentage = 0.5f;
     [SerializeField] private float nextTimePercent;
     [SerializeField] private float startSpawnDelay;
     [SerializeField] private GameObject[] miniGamePrefabs;
@@ -92,6 +94,8 @@ public class GameManager : MonoBehaviour
         newMiniGame = Instantiate(miniGamePrefabs[Random.Range(0, miniGamePrefabs.Length)], (Vector3) miniGamePositions[location], transform.rotation);
         miniGames[location] = newMiniGame.GetComponent<MiniGameBase>();
         miniGames[location].Lifetime = initialMiniGameTime * Mathf.Pow(nextTimePercent, gamesCompleted);
+        miniGames[location].redPercentage = redPercentage;
+        miniGames[location].yellowPercentage = yellowPercentage;
         InputManager.instance.RegisterGameObject(miniGames[location].gameObject);
         miniGames[location].gameObject.SetActive(!IsPaused);
     }
