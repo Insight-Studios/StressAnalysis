@@ -67,7 +67,6 @@ MonoBehaviour:
   - {fileID: 1387363172235219088}
   - {fileID: 3315388685052381685}
   timerAnimator: {fileID: 711903446596351571}
-  lifetime: 30
   spawnDelayProp: 0.05
   minSpawnDelay: 1
   spawners:
@@ -806,7 +805,7 @@ PrefabInstance:
     - target: {fileID: 1381081612964542845, guid: fcb3545ac1e13e54b83482e8507706d6,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3751245154117770822, guid: fcb3545ac1e13e54b83482e8507706d6,
         type: 3}

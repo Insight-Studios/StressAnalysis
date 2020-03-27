@@ -18,7 +18,7 @@ public abstract class MiniGameBase : MonoBehaviour
             timerAnimator.speed = 1/value;
         }
     }
-    private float lifetime;
+    private float lifetime = 30;
 
     protected int requiredScore;
 

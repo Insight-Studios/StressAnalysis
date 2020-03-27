@@ -79,7 +79,6 @@ public class ScenesManager : MonoBehaviour
             file.Close();
 
             highscore = stats.getHighscore();
-            print("read from file");
         }
     }
 }
