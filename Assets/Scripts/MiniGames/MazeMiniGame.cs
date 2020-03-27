@@ -69,7 +69,6 @@ public class MazeMiniGame : MiniGameBase
                 }
                 break;
         }
-        print (trailGrid.ToString());
     }
 
     protected override void MiniGameUpdate()
