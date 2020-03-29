@@ -68,7 +68,7 @@ MonoBehaviour:
   - {fileID: 3315388685052381685}
   timerAnimator: {fileID: 711903446596351571}
   spawnDelayProp: 0.05
-  minSpawnDelay: 0.5
+  minSpawnDelay: 0.75
   spawners:
   - {fileID: 3908488157718961074}
   - {fileID: 1908051193762848153}
