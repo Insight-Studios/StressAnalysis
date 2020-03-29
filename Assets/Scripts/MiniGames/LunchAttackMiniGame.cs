@@ -66,6 +66,11 @@ public class LunchAttackMiniGame : MiniGameBase
             SpawnBug();
             timeSinceSpawn = 0;
         }
+
+        if (currentBug != null)
+        {
+            currentBug.GetComponent<Rigidbody2D>().velocity = new Vector2(-Mathf.Cos(currentBugPos * Mathf.PI / 4), -Mathf.Sin(currentBugPos * Mathf.PI / 4)) * bugSpeed;
+        }
     }
 
     void SpawnBug()
