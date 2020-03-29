@@ -104,10 +104,10 @@ public class MemoryMiniGame : MiniGameBase
             Color original = numbers[num].color;
             numbers[num].color = Color.white;
 
-            yield return new WaitForSeconds(Mathf.Max(blinkProp*RemainingTime, minBlinkTime));
+            yield return new WaitForSeconds(Mathf.Max(blinkProp*LifeTime, minBlinkTime));
 
             numbers[num].color = original;
-            yield return new WaitForSeconds(waitProp*RemainingTime);
+            yield return new WaitForSeconds(waitProp*LifeTime);
         }
     }
 }

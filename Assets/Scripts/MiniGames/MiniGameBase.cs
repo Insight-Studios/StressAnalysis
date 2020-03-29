@@ -27,7 +27,7 @@ public abstract class MiniGameBase : MonoBehaviour
     private int currentScore;
 
     public bool GameOver { get { return gameOver; } }
-    public float RemainingTime { get { return remainingTime; } }
+    public float LifeTime { get { return remainingTime; } }
 
     public int Score {
         get {

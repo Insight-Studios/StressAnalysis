@@ -112,7 +112,7 @@ public class GameManager : MonoBehaviour
             for (int i = 0; i < numberOfSpots; i++) {
                 if (miniGames[i] != null && !miniGames[i].enabled) {
                     gamesCompleted++;
-                    score += Mathf.RoundToInt(100*(miniGames[i].RemainingTime/miniGames[i].Lifetime)*gamesCompleted);
+                    score += Mathf.RoundToInt(100*(miniGames[i].LifeTime/miniGames[i].Lifetime)*gamesCompleted);
                     scoreText.text = "Score: " + score;
                     InputManager.instance.UnRegisterGameObject(miniGames[i].gameObject);
                     Destroy(miniGames[i].gameObject);

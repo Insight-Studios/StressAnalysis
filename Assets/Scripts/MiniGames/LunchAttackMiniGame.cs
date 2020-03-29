@@ -61,7 +61,7 @@ public class LunchAttackMiniGame : MiniGameBase
         }
 
         timeSinceSpawn += Time.deltaTime;
-        if (timeSinceSpawn >= spawnDelayProp * RemainingTime && currentBug == null)
+        if (timeSinceSpawn >= spawnDelayProp * LifeTime && currentBug == null)
         {
             SpawnBug();
             timeSinceSpawn = 0;

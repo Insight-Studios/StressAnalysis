@@ -65,7 +65,7 @@ public class BucketMiniGame : MiniGameBase
         nailColliders.RemoveAll( (Collider2D collider) => { return toBeRemoved.Contains(collider); } );
 
         timeSinceSpawn += Time.deltaTime;
-        if (timeSinceSpawn >= Mathf.Max(spawnDelayProp*RemainingTime, minSpawnDelay))
+        if (timeSinceSpawn >= Mathf.Max(spawnDelayProp * LifeTime, minSpawnDelay))
         {
             GameObject newNail = Instantiate(nailPrefab, spawners[Random.Range(0, spawners.Length)].transform);
             nailColliders.Add(newNail.GetComponent<Collider2D>());
