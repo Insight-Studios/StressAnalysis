@@ -53,6 +53,11 @@ public class ScenesManager : MonoBehaviour
         Save();
     }
 
+    public void Exit()
+    {
+        Application.Quit();
+    }
+
     public void ShowHighscore()
     {
         print(highscore);
