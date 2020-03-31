@@ -15,7 +15,6 @@ public class ScenesManager : MonoBehaviour
     private int highscore = 0;
 
     public TextMesh scoreText;
-    public Text highscoreText;
 
     void Awake()
     {
@@ -29,8 +28,10 @@ public class ScenesManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+    }
 
-        print(Application.persistentDataPath);
+    private void Start()
+    {
         ShowHighscore();
     }
 
@@ -63,7 +64,11 @@ public class ScenesManager : MonoBehaviour
     public void ShowHighscore()
     {
         Load();
-        highscoreText.text = ">> " + highscore;
+        Text highscoreText = GameObject.Find("Canvas/HighscoreText").GetComponent<Text>();
+        if (highscoreText != null)
+        {
+            highscoreText.text = ">> " + highscore;
+        }
     }
 
     private void Save()
