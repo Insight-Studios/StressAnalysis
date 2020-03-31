@@ -45,5 +45,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 7655253372491252944, guid: 1ce57001d50f05a42bb4f466d81c7e14,
     type: 3}
-  highscoreText: {fileID: 103500296729192024, guid: 936eb2c1c9cdd7945a689d55124d0c90,
+  highscoreText: {fileID: 7826482640794897430, guid: 936eb2c1c9cdd7945a689d55124d0c90,
     type: 3}
