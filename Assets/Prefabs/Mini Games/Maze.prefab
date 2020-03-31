@@ -57,7 +57,6 @@ MonoBehaviour:
   - {fileID: 2971521478762687216}
   - {fileID: 2660687488306568155}
   - {fileID: 5289470607456319557}
-  - {fileID: 0}
   timerAnimator: {fileID: 711903446596351571}
   mazeRenderer: {fileID: 1730069730622873276}
   trailRenderers:

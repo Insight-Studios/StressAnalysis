@@ -5,6 +5,7 @@ using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScenesManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class ScenesManager : MonoBehaviour
     private int highscore = 0;
 
     public TextMesh scoreText;
+    public Text highscoreText;
 
     void Awake()
     {
@@ -29,7 +31,6 @@ public class ScenesManager : MonoBehaviour
         }
 
         print(Application.persistentDataPath);
-        Load();
         ShowHighscore();
     }
 
@@ -38,6 +39,7 @@ public class ScenesManager : MonoBehaviour
         GameManager.instance = null;
         scoreText.text = "Score: ";
         SceneManager.LoadScene(MAIN_MENU);
+        ShowHighscore();
     }
 
     public void Game()
@@ -60,7 +62,8 @@ public class ScenesManager : MonoBehaviour
 
     public void ShowHighscore()
     {
-        print(highscore);
+        Load();
+        highscoreText.text = ">> " + highscore;
     }
 
     private void Save()
