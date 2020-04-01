@@ -11,7 +11,7 @@ public class ScenesManager : MonoBehaviour
 {
 
     public static ScenesManager instance;
-    private static int MAIN_MENU = 0, GAME = 1, GAMEOVER = 2;
+    private static int MAIN_MENU = 0, GAME = 1, GAMEOVER = 2, TUTORIAL = 3;
     private int highscore = 0;
 
     public TextMesh scoreText;
@@ -45,6 +45,11 @@ public class ScenesManager : MonoBehaviour
     public void Game()
     {
         SceneManager.LoadScene(GAME);
+    }
+
+    public void Tutorial()
+    {
+        SceneManager.LoadScene(TUTORIAL);
     }
 
     public void GameOver()

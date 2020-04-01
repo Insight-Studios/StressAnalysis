@@ -36,17 +36,17 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
     
     public Vector2[] miniGamePositions;
-    [SerializeField] private float initialMiniGameTime = 30;
-    [SerializeField] private float redPercentage = 0.2f;
-    [SerializeField] private float yellowPercentage = 0.5f;
-    [SerializeField] private float nextTimePercent;
-    [SerializeField] private float startSpawnDelay;
-    [SerializeField] private GameObject[] miniGamePrefabs;
-    [SerializeField] private TextMesh scoreText;
-    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] protected float initialMiniGameTime = 30;
+    [SerializeField] protected float redPercentage = 0.2f;
+    [SerializeField] protected float yellowPercentage = 0.5f;
+    [SerializeField] protected float nextTimePercent;
+    [SerializeField] protected float startSpawnDelay;
+    [SerializeField] protected GameObject[] miniGamePrefabs;
+    [SerializeField] protected TextMesh scoreText;
+    [SerializeField] protected GameObject pauseMenu;
 
-    private int numberOfSpots;
-    private int gamesCompleted;
+    protected int numberOfSpots;
+    protected int gamesCompleted;
 
     [HideInInspector] public MiniGameBase[] miniGames;
     [HideInInspector] public int score;
@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(startSpawnDelay);
         }
     }
-    void SpawnGame(int location) //0 left, 1 middle, 2 right
+    protected virtual void SpawnGame(int location) //0 left, 1 middle, 2 right
     {
         GameObject newMiniGame;
 
@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviour
         miniGames[location].gameObject.SetActive(!IsPaused);
     }
 
-    public void CompletedMiniGame(bool gameOver)
+    public virtual void CompletedMiniGame(bool gameOver)
     {
         if (gameOver)
         {

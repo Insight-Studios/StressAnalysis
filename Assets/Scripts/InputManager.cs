@@ -5,8 +5,10 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     public static InputManager instance = null;
+    public GameManager gameManager;
     public GameObject selectedMiniGameIcon;
     List<OnClickEvent> onClicks = new List<OnClickEvent>();
+
     public MiniGameBase SelectedMiniGame
     {
         get
@@ -16,9 +18,9 @@ public class InputManager : MonoBehaviour
         set
         {
             bool exists = false;
-            for (int i = 0; i < GameManager.instance.miniGames.Length; i++)
+            for (int i = 0; i < gameManager.miniGames.Length; i++)
             {
-                if (GameManager.instance.miniGames[i] == value)
+                if (gameManager.miniGames[i] == value)
                 {
                     selectedMiniGameIndex = i;
                     exists = true;
@@ -34,7 +36,7 @@ public class InputManager : MonoBehaviour
             
             selectedMiniGame = value;
             selectedMiniGameIcon.SetActive(true);
-            selectedMiniGameIcon.transform.position = (Vector3) GameManager.instance.miniGamePositions[selectedMiniGameIndex] - Vector3.back;
+            selectedMiniGameIcon.transform.position = (Vector3) gameManager.miniGamePositions[selectedMiniGameIndex] - Vector3.back;
         }
     }
     MiniGameBase selectedMiniGame;
@@ -46,14 +48,17 @@ public class InputManager : MonoBehaviour
         }
         set 
         {
-            if (value >= GameManager.instance.miniGames.Length)
+            if (value >= gameManager.miniGames.Length)
                 value = 0;
             else if (value < 0)
-                value = GameManager.instance.miniGames.Length - 1;
-            selectedMiniGameIndex = value;
-            selectedMiniGame = GameManager.instance.miniGames[value];
-            selectedMiniGameIcon.SetActive(true);
-            selectedMiniGameIcon.transform.position = (Vector3) GameManager.instance.miniGamePositions[value] - Vector3.back;
+                value = gameManager.miniGames.Length - 1;
+            if (gameManager.miniGames[value] != null)
+            {
+                selectedMiniGameIndex = value;
+                selectedMiniGame = gameManager.miniGames[value];
+                selectedMiniGameIcon.SetActive(true);
+                selectedMiniGameIcon.transform.position = (Vector3) gameManager.miniGamePositions[value] - Vector3.back;
+            }
         }
     }
     int selectedMiniGameIndex;
@@ -109,25 +114,19 @@ public class InputManager : MonoBehaviour
         if (e.isKey && Input.GetKeyDown(e.keyCode))
         {
             //MiniGame Selection Inputs
-            if (!GameManager.instance.IsPaused) switch (e.keyCode)
+            if (!gameManager.IsPaused) switch (e.keyCode)
             {
                 case KeyCode.A:
                     SelectedMiniGameIndex = 0;
                     break;
                 case KeyCode.S:
-                        if (GameManager.instance.miniGames[1] != null)
-                        {
-                            SelectedMiniGameIndex = 1;
-                        }
+                    SelectedMiniGameIndex = 1;
                     break;
                 case KeyCode.D:
-                        if (GameManager.instance.miniGames[2] != null)
-                        {
-                            SelectedMiniGameIndex = 2;
-                        }
-                        break;
+                    SelectedMiniGameIndex = 2;
+                    break;
                 case KeyCode.Escape:
-                    GameManager.instance.IsPaused = true;
+                    gameManager.IsPaused = true;
                     break;
                 default:
                     //MiniGame Inputs
@@ -137,7 +136,7 @@ public class InputManager : MonoBehaviour
             else switch (e.keyCode)
             {
                 case KeyCode.Escape:
-                    GameManager.instance.IsPaused = false;
+                    gameManager.IsPaused = false;
                     break;
             }
         }
